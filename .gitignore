@@ -5,3 +5,4 @@ config/imager.js
 *.class
 *.pyc
 *.pyo
+node_modules
