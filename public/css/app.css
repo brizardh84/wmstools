@@ -61,7 +61,11 @@ a.new {
 	background-position: -72px 0px;
 }
 
-.contact {
+a.contact {
+	margin : 0 10px 0 0;
+}
+
+.contactbox {
 	border : 1px solid black;
 	margin : 10px;
 	padding : 10px;

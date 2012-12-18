@@ -33,12 +33,12 @@ block content
           .controls
             textarea#description.input-xlarge(type='text', rows="5", name="description", placeholder='Enter the project description')=project.description
 
-        //.control-group
-        //  label.control-label(for='contacts') Contacts
-        //  .controls
-        //    select#contacts.input-xlarge(type='text', name="contacts", placeholder='Enter the contacts')
-        //      each contact in contacts
-        //        option #{contact.name}
+        .control-group
+          label.control-label(for='contacts') Contacts
+          .controls
+             select#contacts.input-xlarge(type='text', name="contacts", placeholder='Enter the contacts', multiple = true)
+               each contact in contacts
+                 option(value = contact.id, selected = (project.contacts.indexOf(contact.id) > -1)) #{contact.firstname} #{contact.lastname}
             
         .control-group
           label.control-label(for='tags') Tags

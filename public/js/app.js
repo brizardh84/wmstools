@@ -14,8 +14,9 @@ $(document).ready(function () {
 	});
 
 	$('#tags').tagsInput({
+		'defaultText' : 'Add tag',
 		'height':'60px',
 		'width':'280px'
 	});
-
+	
 });

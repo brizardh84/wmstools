@@ -8,7 +8,7 @@ block main
 block content
   each contact in contacts
     b #{contact.lastname.charAt(0)}
-    .contact
+    .contactbox
       a.title(href='/contacts/'+contact._id, title='Edit contact') #{contact.lastname}, #{contact.firstname}
       p=contact.email
 

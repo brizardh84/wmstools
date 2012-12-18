@@ -88,7 +88,7 @@ exports.index = function(req, res){
 	Project
 		.find({})
 		.populate('user', 'name')
-		.populate('contacts', 'name email')
+		.populate('contacts')
 		.sort({'number': 1}) // sort by date
 		.limit(perPage)
 		.skip(perPage * page)
