@@ -15,9 +15,9 @@ block content
           p.contacts
             span Contacts :&nbsp;
             each contact in project.contacts
-              a.contact(href="mailto:"+contact.email)
+              a(href="mailto:"+contact.email)
                 i.icon-contacts
-                |  #{contact.name}
+                |  #{contact.firstname} #{contact.lastname}
         if (project.tags.length > 0)
           span.tags
             span Tags :&nbsp;

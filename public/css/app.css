@@ -61,8 +61,10 @@ a.new {
 	background-position: -72px 0px;
 }
 
-.contacts {
-
+.contact {
+	border : 1px solid black;
+	margin : 10px;
+	padding : 10px;
 }
 
 /* Contact inputs */

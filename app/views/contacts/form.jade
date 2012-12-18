@@ -19,14 +19,19 @@ block content
           input(type="hidden", name="_method", value="PUT")
 
         .control-group
-          label.control-label(for='name') Name
+          label.control-label(for='firstname') Prénom
           .controls
-            input#name.input-xlarge(type='text', name="name", value=contact.name, placeholder='Enter the name')
+            input#firstname.input-xlarge(type='text', name="firstname", value=contact.firstname)
+            
+        .control-group
+          label.control-label(for='lastname') Nom
+          .controls
+            input#lastname.input-xlarge(type='text', name="lastname", value=contact.lastname)
         
         .control-group
           label.control-label(for='number') Email
           .controls
-            input#email.input-xlarge(type='text', name="email", value=contact.email, placeholder='example@snclavalin.com')
+            input#email.input-xlarge(type='text', name="email", value=contact.email, placeholder='firstname.lastname@snclavalin.com')
 
         .form-actions
           button.btn.btn-primary(type='submit') Save changes
