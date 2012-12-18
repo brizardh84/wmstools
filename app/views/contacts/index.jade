@@ -1,0 +1,17 @@
+extends ../layouts/default
+
+block main
+  h1 Contacts 
+    a.new(href='/contacts/new', title="new contact") (Create New)
+              
+
+block content
+  each contact in contacts
+    .contact
+      a.title(href='/contacts/'+contact._id, title=contact.name) #{contact.name}
+      p=contact.email
+
+  if (pages > 1)
+    .pagination
+      ul
+        != createPagination(pages, page)

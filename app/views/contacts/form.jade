@@ -1,0 +1,34 @@
+extends ../layouts/default
+
+block content
+  - var action = '/contacts'
+  if (!contact.isNew)
+    - action += '/'+contact.id
+
+  if (typeof errors !== 'undefined')
+    .fade.in.alert.alert-block.alert-error
+      a.close(data-dismiss="alert", href="javascript:void(0)") x
+      ul
+        each error in errors
+          li= error.type
+
+  .row
+    .span7
+      form.form-horizontal(method="post", action=action, enctype="multipart/form-data")
+        if (!contact.isNew)
+          input(type="hidden", name="_method", value="PUT")
+
+        .control-group
+          label.control-label(for='name') Name
+          .controls
+            input#name.input-xlarge(type='text', name="name", value=contact.name, placeholder='Enter the name')
+        
+        .control-group
+          label.control-label(for='number') Email
+          .controls
+            input#email.input-xlarge(type='text', name="email", value=contact.email, placeholder='example@snclavalin.com')
+
+        .form-actions
+          button.btn.btn-primary(type='submit') Save changes
+          &nbsp;
+          a.btn(href='/contacts', title="cancel") Cancel
