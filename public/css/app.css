@@ -28,6 +28,14 @@ body {
   border-top: 1px solid #e8e8e8;
 }
 
+.roundedbox {
+	padding : 10px;
+	margin : 10px 0px 10px 0px;
+	border-radius : 6px;
+	border : 1px solid #999999;
+	background-color : #F7F7F7;
+}
+
 .main-head {
   text-align: center;
   padding: 20px 0px;
@@ -65,10 +73,63 @@ a.contact {
 	margin : 0 10px 0 0;
 }
 
+.contactletter {
+	font-weight : bold;
+	margin-top : 10px;
+	padding-left : 10px; 
+	margin-bottom : 5px;
+	border-radius : 6px;
+	border : 1px solid #999999;
+	background-color : #F7F7F7;
+}
+
 .contactbox {
-	border : 1px solid black;
-	margin : 10px;
-	padding : 10px;
+	margin-left : 10px !important;
+}
+
+.clearboth {
+	clear:both;
+}
+
+.search {
+  margin-bottom : 15px;
+}
+
+.letters {
+	border-bottom: 1px solid #e8e8e8;	
+	padding : 2px;
+	border-top : 1px solid #e8e8e8;
+	margin : 10px 0px 20px 0px;
+}
+
+.inactiveProjectTab {
+	border-bottom : 1px dotted #CCC;
+	border-left : 1px dotted #CCC;
+	border-top : 1px dotted #CCC;
+	border-radius : 6px;
+}
+
+.ellipsistab {
+    overflow:hidden;
+    white-space:nowrap;
+    -ms-text-overflow:ellipsis;
+    text-overflow:ellipsis;
+    width:150px;
+    height:30px;
+}
+
+
+/* Documents */
+.doc-section-header {
+	font-size : 14px;
+	font-weight : bold;
+	margin:18px 0 5px 0px;
+	border:0;
+	border-bottom:1px solid #eee;
+}
+
+.doc-section-row {
+	margin-left : 10px;
 }
 
 /* Contact inputs */

@@ -18,33 +18,57 @@ block content
         if (!project.isNew)
           input(type="hidden", name="_method", value="PUT")
 
-        .control-group
-          label.control-label(for='title') Title
-          .controls
-            input#title.input-xlarge(type='text', name="title", value=project.title, placeholder='Enter the title')
+        fieldset
+          legend General Info
+          .control-group
+            label.control-label(for='title') Title
+            .controls
+              input#title.input-xlarge(type='text', name="title", value=project.title, placeholder='Enter the title')
         
-        .control-group
-          label.control-label(for='number') Number
-          .controls
-            input#number.input-xlarge(type='text', name="number", value=project.number, placeholder='Enter the project number')
+          .control-group
+            label.control-label(for='number') Number
+            .controls
+              input#number.input-xlarge(type='text', name="number", value=project.number, placeholder='Enter the project number')
 
-        .control-group
-          label.control-label(for='description') Description
-          .controls
-            textarea#description.input-xlarge(type='text', rows="5", name="description", placeholder='Enter the project description')=project.description
+          .control-group
+            label.control-label(for='description') Description
+            .controls
+              textarea#description.input-xlarge(type='text', rows="5", name="description", placeholder='Enter the project description')=project.description
 
-        .control-group
-          label.control-label(for='contacts') Contacts
-          .controls
-             select#contacts.input-xlarge(type='text', name="contacts", placeholder='Enter the contacts', multiple = true)
-               each contact in contacts
-                 option(value = contact.id, selected = (project.contacts.indexOf(contact.id) > -1)) #{contact.firstname} #{contact.lastname}
+          .control-group
+            label.control-label(for='contacts') Contacts
+            .controls
+               select#contacts.input-xlarge(type='text', name="contacts", placeholder='Enter the contacts', multiple = true)
+                 each contact in contacts
+                   option(value = contact.id, selected = (project.contacts.indexOf(contact.id) > -1)) #{contact.lastname}, #{contact.firstname} 
             
-        .control-group
-          label.control-label(for='tags') Tags
-          .controls
-            input#tags(type='text', name="tags", value=project.tags, placeholder='Enter the tags')
-                            
+          .control-group
+            label.control-label(for='tags') Tags
+            .controls
+              input#tags(type='text', name="tags", value=project.tags, placeholder='Enter the tags')
+        
+        fieldset
+          legend Location
+          .control-group
+            label.control-label(for='country') Country
+            .controls
+              input#country(type='text', name="country", value=project.location.country)
+          
+          .control-group
+            label.control-label(for='city') City
+            .controls
+              input#city(type='text', name="city", value=project.location.city)
+          
+          .control-group
+            label.control-label(for='latitude') Latitude
+            .controls
+              input#latitude(type='text', name="latitude", value=project.location.coordinates.latitude, placeholder='Enter the latitude')
+        
+          .control-group
+            label.control-label(for='longitude') Longitude
+            .controls
+              input#longitude(type='text', name="longitude", value=project.location.coordinates.longitude, placeholder='Enter the longitude')
+            
         .form-actions
           button.btn.btn-primary(type='submit') Save changes
           &nbsp;

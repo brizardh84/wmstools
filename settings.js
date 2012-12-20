@@ -16,7 +16,8 @@ function bootApplication(app, config, passport) {
 
   app.set('showStackError', true)
 
-  app.use(express.static(__dirname + '/public'))
+  app.use(express.static(__dirname + '/public'));
+  app.use("/doc", express.static(__dirname + '/doc')); // Dépôt de documents
 
   app.use(express.logger(':method :url :status'))
 

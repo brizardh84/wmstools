@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'), 
 	Contact = mongoose.model('Contact'), 
+	Project = mongoose.model('Project'),
 	_ = require('underscore')
 	
 // New contact
@@ -23,7 +24,7 @@ exports.create = function (req, res) {
 				errors: err.errors
 			})
 		} else {
-			res.redirect('/contacts/'+contact._id)
+			res.redirect('/contacts')
 		}
 	})
 }
@@ -50,7 +51,7 @@ exports.update = function(req, res){
  				errors: err.errors
 			})
 		} else {
-			res.redirect('/contacts/'+contact._id)
+			res.redirect('/contacts')
 		}
 	})
 }
@@ -73,27 +74,33 @@ exports.destroy = function(req, res){
 
 // Listing of Contacts
 exports.index = function(req, res){
-	var perPage = 5, 
-		page = req.param('page') > 0 ? req.param('page') : 0
-
+	var search = req.param('search') || "";
+	var regexSearch = new RegExp(search, "i");
+		
 	Contact
-		.find({})
-		.populate('user', 'name')
-		.sort({'name': 1}) // sort by date
-		.limit(perPage)
-		.skip(perPage * page)
-		.exec(function(err, contacts) {
+		.find({ $or:[ {lastname : regexSearch}, {firstname : regexSearch} ] })
+		.sort({'lastname': 1}) // sort by date
+		.exec(function (err, contacts) {
 			if (err) {
 				return res.render('500')
 			}
+			var letters = [];
+			
+			contacts.forEach(function(contact) {
+				if (contact.lastname) {
+					if (letters.indexOf(contact.lastname.charAt(0)) == -1)
+						letters += contact.lastname.charAt(0);
+				}
+			})
 			
 			Contact.count().exec(function (err, count) {
-				res.render('contacts/index', {
+		  		res.render('contacts/index', {
 					title: 'List of Contacts', 
-					contacts: contacts, 
-					page: page, 
-					pages: count / perPage
-				})
-			})
-		})
+					contacts: contacts,
+					letters : letters,
+					p_search : search,
+					count : count
+				});
+			});
+		});
 }

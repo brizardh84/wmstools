@@ -18,10 +18,8 @@ block content
             a.tag(href="/tags/"+tag)
               i.icon-tags
               |  #{tag}
-    .span3
-      if (!project.isNew && project.image && project.image.files && project.image.files.length)
-        img(src=project.image.cdnUri + '/mini_' + project.image.files[0])
-
+      br
+      a(target="_blank", href="http://www.maps.google.com?daddr=" + project.location.coordinates.latitude + "," + project.location.coordinates.longitude + "&z=4") View on map
   p
     br
     form.center.form-inline.confirm(action="/projects/"+project.id, method="post")
@@ -29,7 +27,11 @@ block content
       &nbsp;&nbsp;
       input(type="hidden", name="_method", value="DELETE")
       button.btn.btn-danger(type="submit") Delete
-
+  p
+    br
+    a.btn.btn-success(href='/projects/generate_preproposition/'+project._id, title="generate pdf") Generate PDF
+    - if (generatedpdf)
+      p Allo
   p
     br
     h2 Comments

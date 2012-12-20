@@ -10,7 +10,16 @@ var ContactSchema = new Schema({
 		type: String,
 		index: { unique: true }
 	},
-	telephone : String
+	phone : String,
+	extension : String
+});
+
+ContactSchema.virtual('fullname').get(function() {
+	return this.firstname + " " + this.lastname;
+});
+
+ContactSchema.virtual('fullname_inverted').get(function() {
+	return  this.lastname + ", " + this.firstname;
 });
 
 mongoose.model('Contact', ContactSchema);

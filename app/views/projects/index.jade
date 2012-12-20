@@ -2,11 +2,20 @@ extends ../layouts/default
 
 block main
   h1 Projects 
-    a.new(href='/projects/new', title="new project") (Create New)
+  a.new(href='/projects/new', title="new project") Create New
     
 block content
+  if (pages > 1)
+    .pagination.center
+      ul
+        != createPagination(pages, page)
+  
+  // Results
+  div
+    i Showing #{projects.length} results out of #{count}
+    
   each project in projects
-    .project
+    .project.roundedbox
       a.title(href='/projects/'+project._id, title=project.title) [#{project.number}] - #{project.title}
       p=project.description
            
@@ -30,6 +39,6 @@ block content
             span Tags : None
 
   if (pages > 1)
-    .pagination
+    .pagination.center
       ul
         != createPagination(pages, page)

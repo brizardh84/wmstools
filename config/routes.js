@@ -37,6 +37,7 @@ module.exports = function (app, passport, auth) {
 	app.post('/projects', auth.requiresLogin, projects.create);
 	app.get('/projects/:projectId', projects.show);
 	app.get('/projects/:projectId/edit', auth.requiresLogin, auth.project.hasAuthorization, projects.edit);
+	app.get('/projects/generate_preproposition/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.generate_preproposition);
 	app.put('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.update);
 	app.del('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.destroy);
 	app.param('projectId', function(req, res, next, id){
@@ -100,6 +101,10 @@ module.exports = function (app, passport, auth) {
  				next();
 			})
 	})
+	
+	// documents routes
+	var documents = require('../app/controllers/documents');
+	app.get('/documents/', documents.index);
 	
 	// home route
 	app.get('/', projects.index);

@@ -8,7 +8,8 @@ exports.index = function (req, res) {
 	Project
 		.find({ tags: req.param('tag') })
 		.populate('user', 'name')
-		.sort({'createdAt': -1}) // sort by date
+		.populate('contacts')
+		.sort({'number': 1}) // sort by date
 		.limit(perPage)
 		.skip(perPage * page)
 		.exec(function(err, projects) {

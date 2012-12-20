@@ -19,6 +19,14 @@ var ProjectSchema = new Schema({
 	comments: [{type : Schema.ObjectId, ref : 'Comment'}], 
 	contacts: [{type : Schema.ObjectId, ref : 'Contact'}], 
 	tags: {type: [], get: getTags, set: setTags}, 
+	location : {
+		city : String,
+		country : String,
+		coordinates : {
+			latitude : {type: Number, min: -90, max: 90},
+			longitude : {type: Number, min: -180, max: 180}
+		}
+	},
 	createdAt  : {type : Date, default : Date.now}
 });
 

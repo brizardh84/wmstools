@@ -33,6 +33,16 @@ block content
           .controls
             input#email.input-xlarge(type='text', name="email", value=contact.email, placeholder='firstname.lastname@snclavalin.com')
 
+        .control-group
+          label.control-label(for='phone') Phone
+          .controls
+            input#phone.input-xlarge(type='text', name="phone", value=contact.phone, placeholder='(XXX) XXX-XXXX')
+
+        .control-group
+          label.control-label(for='extension') Extension
+          .controls
+            input#extension.input-xlarge(type='text', name="extension", value=contact.extension, placeholder='XXXX')
+
         .form-actions
           button.btn.btn-primary(type='submit') Save changes
           &nbsp;
