@@ -15,6 +15,7 @@ exports.index = function(req, res){
 			
 			selectedproject = req.param('project') || "";
 			
+
 			/*if (selectedproject != "") {
 				if (fs.existsSync('doc/' + selectedproject)) {
 					walk('doc/' + selectedproject, function(err, results) {
