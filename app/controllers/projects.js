@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	Project = mongoose.model('Project'),
 	Contact = mongoose.model('Contact'),  
 	_ = require('underscore'),
-	file = require('file'),
+	//file = require('file'),
 	PDFDocument = require('pdfkit')
 
 // New project
