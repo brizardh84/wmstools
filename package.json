@@ -21,6 +21,5 @@
     , "async": "latest"
     , "nodemon": "latest"
     , "pdfkit": "latest"
-    , "node-fs": "latest"
   }
 }

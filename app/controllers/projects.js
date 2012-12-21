@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 	Project = mongoose.model('Project'),
 	Contact = mongoose.model('Contact'),  
 	_ = require('underscore'),
-	nodefs = require('node-fs'),
+	file = require('file'),
 	PDFDocument = require('pdfkit')
 
 // New project
@@ -154,8 +154,9 @@ exports.generate_preproposition = function(req, res) {
 	   .link(100, 100, 160, 27, 'http://google.com/')
 	
 	// Write the PDF file to disk
-	var path = 'doc/' + project.number + '/Prepropositions';
-	nodefs.mkdir(path, 0777, true, function(err) {
+	console.log("FIX ME");
+	/*var path = 'doc/' + project.number + '/Prepropositions';
+	file.mkdirs(path, 0777, true, function(err) {
 		if (err) {
 			console.log(err);
 		} else {
@@ -165,6 +166,6 @@ exports.generate_preproposition = function(req, res) {
 				generatedpdf : true
 			})
 		}
-	});	
+	});	*/
 }
 

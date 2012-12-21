@@ -22,7 +22,8 @@ exports.index = function (req, res) {
 					title: 'List of Projects', 
 					projects: projects, 
 					page: page, 
-					pages: count / perPage
+					pages: count / perPage,
+					count : count
 				});
 			});
 		});
