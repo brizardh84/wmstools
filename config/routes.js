@@ -107,7 +107,7 @@ module.exports = function (app, passport, auth) {
 	app.get('/documents/', documents.index);
 	
 	// home route
-	app.get('/', projects.index);
+	app.get('/', auth.requiresLogin, projects.index);
 
 	// comment routes
 	var comments = require('../app/controllers/comments');
