@@ -1,0 +1,103 @@
+2012-12-21T15:19:49+00:00 app[web.1]: ========================================================================================
+2012-12-21T15:19:49+00:00 app[web.1]: Express app started on port 21962
+2012-12-21T15:19:50+00:00 heroku[web.1]: State changed from starting to up
+2012-12-21T15:19:50+00:00 heroku[web.1]: Process exited with status 1
+2012-12-21T15:19:54+00:00 app[web.1]: GET /projects 304
+2012-12-21T15:19:54+00:00 heroku[router]: at=info method=GET path=/projects host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=3ms service=109ms status=304 bytes=0
+2012-12-21T15:19:54+00:00 heroku[router]: at=info method=GET path=/css/bootstrap.min.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=0ms service=10ms status=200 bytes=82972
+2012-12-21T15:19:54+00:00 heroku[router]: at=info method=GET path=/css/app.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=2ms service=9ms status=200 bytes=2786
+2012-12-21T15:19:54+00:00 heroku[router]: at=info method=GET path=/css/jquery.tagsinput.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=2ms connect=7ms service=2ms status=200 bytes=904
+2012-12-21T15:19:54+00:00 heroku[router]: at=info method=GET path=/js/jquery.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=11ms service=16ms status=200 bytes=94840
+2012-12-21T15:19:54+00:00 heroku[router]: at=info method=GET path=/js/bootbox.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=13ms status=200 bytes=15982
+2012-12-21T15:19:54+00:00 heroku[router]: at=info method=GET path=/js/app.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=2ms status=200 bytes=1860
+2012-12-21T15:19:55+00:00 heroku[router]: at=info method=GET path=/js/bootstrap.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=11ms connect=13ms service=39ms status=200 bytes=22337
+2012-12-21T15:19:54+00:00 heroku[router]: at=info method=GET path=/js/jquery.tagsinput.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=4ms service=5ms status=200 bytes=6400
+2012-12-21T15:19:55+00:00 heroku[router]: at=info method=GET path=/img/glyphicons-halflings.png host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=793ms status=200 bytes=13826
+2012-12-21T15:19:56+00:00 app[web.1]: GET / 302
+2012-12-21T15:19:56+00:00 app[web.1]: GET /login 200
+2012-12-21T15:19:56+00:00 heroku[router]: at=info method=GET path=/login host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=7ms service=36ms status=200 bytes=2764
+2012-12-21T15:19:56+00:00 heroku[router]: at=info method=GET path=/ host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=3ms service=12ms status=302 bytes=68
+2012-12-21T15:19:56+00:00 heroku[router]: at=info method=GET path=/css/bootstrap.min.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 
+queue=0 wait=0ms connect=2ms service=5ms status=304 bytes=0
+2012-12-21T15:19:56+00:00 heroku[router]: at=info method=GET path=/css/app.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=1ms connect=9ms service=6ms status=304 bytes=0
+2012-12-21T15:19:56+00:00 heroku[router]: at=info method=GET path=/js/jquery.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=0ms service=5ms status=304 bytes=0
+2012-12-21T15:19:56+00:00 heroku[router]: at=info method=GET path=/js/bootbox.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=0ms service=3ms status=304 bytes=0
+2012-12-21T15:19:56+00:00 heroku[router]: at=info method=GET path=/js/bootstrap.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=16ms service=7ms status=304 bytes=0
+2012-12-21T15:19:56+00:00 heroku[router]: at=info method=GET path=/css/jquery.tagsinput.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=2ms connect=14ms service=36ms status=304 bytes=0
+2012-12-21T15:19:56+00:00 heroku[router]: at=info method=GET path=/js/jquery.tagsinput.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=8ms connect=38ms service=110ms status=304 bytes=0
+2012-12-21T15:22:03+00:00 heroku[slugc]: Slug compilation started
+2012-12-21T15:22:36+00:00 heroku[api]: Release v17 created by hugo.brizard@snclavalin.com
+2012-12-21T15:22:36+00:00 heroku[api]: Deploy d69ae2c by hugo.brizard@snclavalin.com
+2012-12-21T15:22:36+00:00 heroku[web.1]: State changed from up to starting
+2012-12-21T15:22:37+00:00 heroku[slugc]: Slug compilation finished
+2012-12-21T15:22:40+00:00 heroku[web.1]: State changed from starting to up
+2012-12-21T15:22:44+00:00 heroku[web.1]: Stopping all processes with SIGTERM
+2012-12-21T15:22:44+00:00 heroku[router]: at=info method=GET path=/ host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=2ms connect=2ms service=90ms status=500 bytes=2233
+2012-12-21T15:22:45+00:00 heroku[router]: at=info method=GET path=/css/app.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=1ms connect=3ms service=5ms status=200 bytes=2786
+2012-12-21T15:22:45+00:00 heroku[router]: at=info method=GET path=/css/jquery.tagsinput.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=8ms status=200 bytes=904
+2012-12-21T15:22:45+00:00 heroku[router]: at=info method=GET path=/js/jquery.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=10ms status=200 bytes=94840
+2012-12-21T15:22:45+00:00 heroku[router]: at=info method=GET path=/js/jquery.tagsinput.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=4ms status=200 bytes=6400
+2012-12-21T15:22:45+00:00 heroku[router]: at=info method=
+GET path=/css/bootstrap.min.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=2ms connect=7ms service=15ms status=200 bytes=82972
+2012-12-21T15:22:45+00:00 heroku[router]: at=info method=GET path=/js/bootbox.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=2ms connect=10ms service=14ms status=200 bytes=15982
+2012-12-21T15:22:45+00:00 heroku[router]: at=info method=GET path=/js/app.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=3ms status=200 bytes=1860
+2012-12-21T15:22:45+00:00 heroku[router]: at=info method=GET path=/js/bootstrap.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=16ms connect=42ms service=38ms status=200 bytes=22337
+2012-12-21T15:22:46+00:00 heroku[web.1]: Process exited with status 1
+2012-12-21T15:22:47+00:00 heroku[router]: at=info method=GET path=/ host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=3ms connect=9ms service=50ms status=500 bytes=2233
+2012-12-21T15:22:47+00:00 heroku[router]: at=info method=GET path=/css/app.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=15ms status=304 bytes=0
+2012-12-21T15:22:47+00:00 heroku[router]: at=info method=GET path=/js/jquery.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=7ms service=13ms status=304 bytes=0
+2012-12-21T15:22:47+00:00 heroku[router]: at=info method=GET path=/css/jquery.tagsinput.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=5ms connect=10ms service=10ms status=304 bytes=0
+2012-12-21T15:22:47+00:00 heroku[router]: at=info method=GET path=/js/bootbox.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=1ms connect=3ms service=14ms status=304 bytes=0
+2012-12-21T15:22:47+00:00 heroku[router]: at=info method=GET path=/js/jquery.tagsinput.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=13ms status=304 bytes=0
+2012-12-21T15:22:47+00:00 heroku[router]: at=info method=GET path=/js/bootstrap.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=1ms connect=2ms service=17ms status=304 bytes=0
+2012-12-21T15:22:47+00:00 heroku[router]: at=info method=GET path=/js/app.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=24ms connect=31ms service=61ms status=304 bytes=0
+2012-12-21T15:22:49+00:00 heroku[router]: at=info method=GET path=/ host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=43ms status=500 bytes=2233
+2012-12-21T15:22:49+00:00 heroku[router]: at=info method=GET path=/js/bootbox.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=5ms service=5ms status=304 bytes=0
+2012-12-21T15:22:49+00:00 heroku[router]: at=info method=GET path=/css/jquery.tagsinput.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=5ms status=304 bytes=0
+2012-12-21T15:22:49+00:00 heroku[router]: at=info method=GET path=/js/bootstrap.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=5ms status=304 bytes=0
+2012-12-21T15:22:49+00:00 heroku[router]: at=info method=GET path=/css/bootstrap.min.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=6ms service=6ms status=304 bytes=0
+2012-12-21T15:22:49+00:00 heroku[router]: at=info method=GET path=/css/app.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=2ms service=8ms status=304 bytes=0
+2012-12-21T15:22:49+00:00 heroku[router]: at=info method=GET path=/js/jquery.tagsinput.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=4ms status=304 bytes=0
+2012-12-21T15:22:49+00:00 heroku[router]: at=info method=GET path=/js/jquery.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=4ms connect=12ms service=4ms status=304 bytes=0
+2012-12-21T15:22:51+00:00 heroku[router]: at=info method=GET path=/projects host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=30ms status=500 bytes=2233
+2012-12-21T15:22:51+00:00 heroku[router]: at=info method=GET path=/js/bootstrap.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=3ms status=304 bytes=0
+2012-12-21T15:22:51+00:00 heroku[router]: at=info method=GET path=/js/bootbox.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=4ms status=304 bytes=0
+2012-12-21T15:22:51+00:00 heroku[router]: at=info method=GET path=/css/app.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=4ms service=3ms status=304 bytes=0
+2012-12-21T15:22:51+00:00 heroku[router]: at=info method=GET path=/css/jquery.tagsinput.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=4ms status=304 bytes=0
+2012-12-21T15:22:52+00:00 heroku[router]: at=info method=GET path=/js/jquery.tagsinput.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=1ms connect=5ms service=10ms status=304 bytes=0
+2012-12-21T15:22:51+00:00 heroku[router]: at=info method=GET path=/css/bootstrap.min.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=3ms service=3ms status=304 bytes=0
+2012-12-21T15:22:52+00:00 heroku[router]: at=info method=GET path=/js/app.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=9ms connect=27ms service=21ms status=304 bytes=0
+2012-12-21T15:22:53+00:00 heroku[router]: at=info method=GET path=/documents host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=4ms service=29ms status=500 bytes=2233
+2012-12-21T15:22:53+00:00 heroku[router]: at=info method=GET path=/js/jquery.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=2ms service=4ms status=304 bytes=0
+2012-12-21T15:22:53+00:00 heroku[router]: at=info method=GET path=/js/bootstrap.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=2ms service=6ms status=304 bytes=0
+2012-12-21T15:22:53+00:00 heroku[router]: at=info method=GET path=/css/bootstrap.min.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=2ms service=7ms status=304 bytes=0
+2012-12-21T15:22:53+00:00 heroku[router]: at=info method=GET path=/css/jquery.tagsinput.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=5ms status=304 bytes=0
+2012-12-21T15:22:53+00:00 heroku[router]: at=info method=GET path=/js/bootbox.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=0ms service=4ms status=304 bytes=0
+2012-12-21T15:22:53+00:00 heroku[router]: at=info method=GET path=/css/app.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=6ms status=304 bytes=0
+2012-12-21T15:22:53+00:00 heroku[router]: at=info method=GET path=/js/jquery.tagsinput.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=5ms status=304 bytes=0
+2012-12-21T15:22:53+00:00 heroku[router]: at=info method=GET path=/js/app.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=5ms service=8ms status=304 bytes=0
+2012-12-21T15:22:54+00:00 heroku[router]: at=info method=GET path=/projects host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=6ms connect=35ms service=41ms status=500 bytes=2233
+2012-12-21T15:22:54+00:00 heroku[router]: at=info method=GET path=/js/jquery.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=2ms service=4ms status=304 bytes=0
+2012-12-21T15:22:54+00:00 heroku[router]: at=info method=GET path=/js/bootbox.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=3ms service=5ms status=304 bytes=0
+2012-12-21T15:22:54+00:00 heroku[router]: at=info method=GET path=/js/bootstrap.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=4ms service=6ms status=304 bytes=0
+2012-12-21T15:22:54+00:00 heroku[router]: at=info method=GET path=/css/jquery.tagsinput.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=4ms status=304 bytes=0
+2012-12-21T15:22:54+00:00 heroku[router]: at=info method=GET path=/js/jquery.tagsinput.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=3ms service=14ms status=304 bytes=0
+2012-12-21T15:22:54+00:00 heroku[router]: at=info method=GET path=/js/app.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=2ms service=16ms status=304 bytes=0
+2012-12-21T15:22:54+00:00 heroku[router]: at=info method=GET path=/css/bootstrap.min.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=3ms status=304 bytes=0
+2012-12-21T15:22:55+00:00 heroku[router]: at=info method=GET path=/login host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=18ms status=500 bytes=2233
+2012-12-21T15:22:55+00:00 heroku[router]: at=info method=GET path=/js/bootbox.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=1ms service=3ms status=304 bytes=0
+2012-12-21T15:22:55+00:00 heroku[router]: at=info method=GET path=/js/jquery.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=2ms service=4ms status=304 bytes=0
+2012-12-21T15:22:55+00:00 heroku[router]: at=info method=GET path=/css/app.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=0ms service=4ms status=304 bytes=0
+2012-12-21T15:22:55+00:00 heroku[router]: at=info method=GET path=/css/bootstrap.min.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=2ms service=4ms status=304 bytes=0
+2012-12-21T15:22:55+00:00 heroku[router]: at=info method=GET path=/js/bootstrap.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=1ms connect=2ms service=3ms status=304 bytes=0
+2012-12-21T15:22:55+00:00 heroku[router]: at=info method=GET path=/js/jquery.tagsinput.min.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=3ms service=5ms status=304 bytes=0
+2012-12-21T15:22:55+00:00 heroku[router]: at=info method=GET path=/css/jquery.tagsinput.css host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=2ms service=4ms status=304 bytes=0
+2012-12-21T15:22:55+00:00 heroku[router]: at=info method=GET path=/js/app.js host=wmstools.herokuapp.com fwd=142.242.2.248 dyno=web.1 queue=0 wait=0ms connect=2ms service=5ms status=304 bytes=0
+2012-12-21T15:23:40+00:00 heroku[web.1]: State changed from up to crashed
+2012-12-21T15:23:40+00:00 heroku[web.1]: State changed from crashed to starting
+2012-12-21T15:23:52+00:00 heroku[web.1]: State changed from starting to up
+2012-12-21T15:24:48+00:00 heroku[web.1]: State changed from up to crashed
+2012-12-21T15:26:14+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/login host=wmstools.herokuapp.com fwd=142.242.2.248 dyno= queue= wait= connect= service= status=503 bytes=
+2012-12-21T15:26:16+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=wmstools.herokuapp.com fwd=142.242.2.248 dyno= queue= wait= connect= service= status=503 bytes=
+2012-12-21T15:26:55+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path=/ host=wmstools.herokuapp.com fwd=142.242.2.248 dyno= queue= wait= connect= service= status=503 bytes=
+2012-12-21T15:27:13+00:00 heroku[api]: Scale to web=1 by hugo.brizard@snclavalin.com
