@@ -32,10 +32,10 @@ module.exports = function (app, passport, auth) {
 	
 	// project routes
 	var projects = require('../app/controllers/projects');
-	app.get('/projects', projects.index);
+	app.get('/projects', auth.requiresLogin, projects.index);
 	app.get('/projects/new', auth.requiresLogin, projects.new);
 	app.post('/projects', auth.requiresLogin, projects.create);
-	app.get('/projects/:projectId', projects.show);
+	app.get('/projects/:projectId', auth.requiresLogin, projects.show);
 	app.get('/projects/:projectId/edit', auth.requiresLogin, auth.project.hasAuthorization, projects.edit);
 	app.get('/projects/generate_preproposition/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.generate_preproposition);
 	app.put('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.update);
@@ -79,7 +79,7 @@ module.exports = function (app, passport, auth) {
 
 	// contacts routes
 	var contacts = require('../app/controllers/contacts');
-	app.get('/contacts', contacts.index);
+	app.get('/contacts', auth.requiresLogin, contacts.index);
 	app.get('/contacts/new', auth.requiresLogin, contacts.new);
 	app.post('/contacts', auth.requiresLogin, contacts.create);
 	app.get('/contacts/:contactId', contacts.show);
@@ -104,7 +104,7 @@ module.exports = function (app, passport, auth) {
 	
 	// documents routes
 	var documents = require('../app/controllers/documents');
-	app.get('/documents/', documents.index);
+	app.get('/documents/', auth.requiresLogin, documents.index);
 	
 	// home route
 	app.get('/', auth.requiresLogin, projects.index);
@@ -115,6 +115,6 @@ module.exports = function (app, passport, auth) {
 
 	// tag routes
 	var tags = require('../app/controllers/tags');
-	app.get('/tags/:tag', tags.index);
+	app.get('/tags/:tag', auth.requiresLogin, tags.index);
 
 }
