@@ -106,6 +106,10 @@ module.exports = function (app, passport, auth) {
 	var documents = require('../app/controllers/documents');
 	app.get('/documents/', auth.requiresLogin, documents.index);
 	
+	// tasks routes
+	var tasks = require('../app/controllers/tasks');
+	app.get('/tasks/', auth.requiresLogin, tasks.index);
+	
 	// home route
 	app.get('/', auth.requiresLogin, projects.index);
 

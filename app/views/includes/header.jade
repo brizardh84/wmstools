@@ -1,6 +1,6 @@
 
 header#header
-  .navbar.navbar-fixed-top(role='navigation')
+  .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
     .navbar-inner
       .container
         .nav-collapse.collapse
@@ -11,6 +11,8 @@ header#header
               a(href='/documents', title="document listing") Documents
             li
               a(href='/contacts', title="contact listing") Contacts
+            li
+              a(href='/tasks', title="task listing") Tasks
           ul.nav.pull-right
             if (req.isAuthenticated())
               li

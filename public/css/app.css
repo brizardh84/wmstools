@@ -45,12 +45,27 @@ body {
   outline: none !important;
 }
 
+/* Alignment */
 .left {
-	text-align :left;
+	text-align :left !important;
 }
 
 .center {
-  text-align: center;
+  text-align: center !important;
+}
+
+.right {
+	text-align : right !important;
+}
+
+/* Colors */
+.red {
+	color : #C32E30;
+}
+
+/* Size */
+.small {
+	font-size : 85%;
 }
 
 .tags {
@@ -145,4 +160,23 @@ div.contactsinput div { display:block; float: left; }
 .footer {
 	text-align : center;
 	padding-top : 10px;
+}
+
+
+/* Tasks */
+.task-sidebar {
+	background-color : #ff0000;
+	border-radius : 6px 0px 0px 6px;
+}
+
+.task-sub-sidebar {
+	background-color : #0000FF;
+	border-radius : 0px 6px 6px 0px;
+	margin-left : 0px !important;
+}
+
+.task-listing {
+	background-color : #00FF00;
+	border-radius : 6px;
+	margin-left : 5px !important;
 }

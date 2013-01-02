@@ -1,0 +1,85 @@
+extends ../layouts/default
+
+block main
+  h2 Active Tasks 
+    
+block content
+  div.title Filtres
+
+  table.table.table-condensed.table-hover.small
+    thead
+      tr
+        th #
+        th Projet
+        th.center %
+        th Tâche
+        th Assigné à
+        th.center Priorité
+        th Échéance
+        th.center Quick Action
+    tbody
+      tr
+        td 1
+        td 
+          a(href = '#') 001431 - WMS
+        td.center 0%
+        td Faire le ménage des projets
+        td 
+          a(href = '#') Hugo Brizard
+        td.center
+          span.img.icon-circle-arrow-down
+          sup (4)
+        td 2012-01-08
+        td
+      tr.error
+        td 2
+        td 
+          a(href = '#') 001431 - WMS
+        td.center 80%
+        td Section documents
+        td 
+          a(href = '#') Hugo Brizard
+        td.center 
+          span.img.icon-circle-arrow-up
+          sup (1)
+        td.red 2012-02-09
+        td
+      tr
+        td 3
+        td 
+          a(href = '#') 020581 - Rhourde-Nouss
+        td.center 90%
+        td Importer les items
+        td 
+          a(href = '#') Denis Bergeron
+        td.center
+          span.img.icon-arrow-up
+          sup (2)
+        td 2013-03-09
+        td
+      tr
+        td 4
+        td 
+          a(href = '#') 000000 - WMS Demo
+        td.center 10%
+        td Finir proposition
+        td 
+          a(href = '#') Patrick Pilote
+        td.center
+          span.img.icon-arrow-up
+          sup (2)
+        td 2013-04-10
+        td
+      tr.error
+        td 5
+        td 
+          a(href = '#') 000001 - Nom de projet très 
+        td.center 40%
+        td Faire une tâche vraiment trop longue et une descripti...
+        td 
+          a(href = '#') Martin Cloutier
+        td.center
+          span.img.icon-arrow-down
+          sup (3)
+        td.red 2012-05-11
+        td
