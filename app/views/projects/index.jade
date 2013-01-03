@@ -6,7 +6,7 @@ block main
     
 block content
   if (pages > 1)
-    .pagination.center
+    .pagination.align-center
       ul
         != createPagination(pages, page)
   
@@ -39,6 +39,6 @@ block content
             span Tags : None
 
   if (pages > 1)
-    .pagination.center
+    .pagination.align-center
       ul
         != createPagination(pages, page)

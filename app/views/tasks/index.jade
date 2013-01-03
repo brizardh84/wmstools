@@ -1,36 +1,76 @@
 extends ../layouts/default
 
 block main
-  h2 Active Tasks 
+  h2 Active tasks
+  a.new(href='/tasks/new', title="new task") New task
     
 block content
-  div.title Filtres
+  div#filtres
+    form.form-inline
+      fieldset
+        legend Filters
+        label.control-label(for='projet', style = 'padding-right:5px;') Project :
+        select#projet.input-large(type='text', name="project_filter", placeholder='Select projects')
+          option(value = "") Select a project
+          each project in collections.projects
+            option(value = project.id, selected = project_filter == project._id) [#{project.number}] - #{project.title}
+        label.control-label(for='user', style = 'padding-left : 20px; padding-right:5px;') Assigned to : 
+        select#user.input-large(type='text', name="user_filter", placeholder='Choisir utilisateurs')
+          option(value = "") Select a user
+          each user in collections.users
+            option(value = user.id, selected = user_filter == user._id) #{user.name}
+        button.btn(type='submit', style = 'margin-left : 10px;') Filter
 
-  table.table.table-condensed.table-hover.small
+  legend Tasks
+    
+  // Results
+  div
+    i Showing #{tasks.length} results out of #{count}
+    
+  table.table.table-condensed.table-hover.small(style = 'border:1px solid #ccc;')
     thead
       tr
-        th #
-        th Projet
-        th.center %
-        th Tâche
-        th Assigné à
-        th.center Priorité
-        th Échéance
-        th.center Quick Action
+        th 
+          a #
+        th 
+          a Project
+        th.align-center 
+          a %
+        th 
+          a Task
+        th 
+          a Assigned to
+        th.align-center 
+          a Priority
+        th 
+          a Due date
+        th.align-center Quick actions
     tbody
-      tr
-        td 1
-        td 
-          a(href = '#') 001431 - WMS
-        td.center 0%
-        td Faire le ménage des projets
-        td 
-          a(href = '#') Hugo Brizard
-        td.center
-          span.img.icon-circle-arrow-down
-          sup (4)
-        td 2012-01-08
-        td
+      each task in tasks
+        tr(class = task.isLate ? "error" : "")
+          td= task.number
+          td 
+            a(href = '#', id = 'project', data-type='select', data-pk="1", data-url="/") [#{task.project.number}] - #{task.project.title}
+          td.align-center 
+            a(href = '#', id = 'completion', data-type='text', data-pk="1", data-url="/", data-emptytext = "0%")= task.completion +"%"
+          td 
+            a(href = '#', id = 'task', data-type='textarea', data-pk="1", data-url="/")= task.task
+          td 
+            a(href = '#', id = 'assignedto', data-type='select', data-pk="1", data-url="/")= task.assigned_to.name
+          td.align-center
+            a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").img.icon-circle-arrow-down
+          td
+            a.red(href = '#', id = 'date', class = task.isLate ? "red" : "", data-type='date', data-pk=task.id, data-url="/")= formatDate(task.due_date, "%Y-%m-%d")
+          td.align-center
+            a(href = '#', style = 'margin : 0px 1px;')
+              span.img.icon-check
+            a(href = '/tasks/' + task._id, style = 'margin : 0px 1px;')
+              span.img.icon-search
+            a(href = '/tasks/' + task._id + '/edit', style = 'margin : 0px 1px;')
+              span.img.icon-pencil
+            a(href = '#', style = 'margin : 0px 1px;')
+              span.img.icon-remove              
+    //
       tr.error
         td 2
         td 
@@ -41,45 +81,18 @@ block content
           a(href = '#') Hugo Brizard
         td.center 
           span.img.icon-circle-arrow-up
-          sup (1)
         td.red 2012-02-09
-        td
-      tr
-        td 3
-        td 
-          a(href = '#') 020581 - Rhourde-Nouss
-        td.center 90%
-        td Importer les items
-        td 
-          a(href = '#') Denis Bergeron
         td.center
-          span.img.icon-arrow-up
-          sup (2)
-        td 2013-03-09
-        td
-      tr
-        td 4
-        td 
-          a(href = '#') 000000 - WMS Demo
-        td.center 10%
-        td Finir proposition
-        td 
-          a(href = '#') Patrick Pilote
-        td.center
-          span.img.icon-arrow-up
-          sup (2)
-        td 2013-04-10
-        td
-      tr.error
-        td 5
-        td 
-          a(href = '#') 000001 - Nom de projet très 
-        td.center 40%
-        td Faire une tâche vraiment trop longue et une descripti...
-        td 
-          a(href = '#') Martin Cloutier
-        td.center
-          span.img.icon-arrow-down
-          sup (3)
-        td.red 2012-05-11
-        td
+          a(href = '#', style = 'margin : 0px 1px;')
+            span.img.icon-check
+          a(href = '#', style = 'margin : 0px 1px;')
+            span.img.icon-search
+          a(href = '#', style = 'margin : 0px 1px;')
+            span.img.icon-pencil
+          a(href = '#', style = 'margin : 0px 1px;')
+            span.img.icon-remove
+            
+  if (pages > 1)
+    .pagination.align-center
+      ul
+        != createPagination(pages, page)

@@ -46,15 +46,15 @@ body {
 }
 
 /* Alignment */
-.left {
+.align-left {
 	text-align :left !important;
 }
 
-.center {
-  text-align: center !important;
+.align-center {
+  	text-align: center !important;
 }
 
-.right {
+.align-right {
 	text-align : right !important;
 }
 

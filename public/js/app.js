@@ -68,4 +68,13 @@ $(document).ready(function () {
 		if ($_GET["project"] !== $(this).attr('number')) 
 			window.location = "/documents?project=" + $(this).attr('number');
 	})
+	
+	$('#project').editable({});
+	$('#task').editable({});
+	$('#date').editable({ format : 'yyyy-mm-dd', autoclose : true});
+	$('#priority').editable({ emptytext : '', source :  ['Very High', 'High', 'Normal', 'Low']});
+	$('#assignedto').editable({ });
+	$('#completion').editable({ });
+	
+	$('#datepicker').datepicker({ autoclose : true, startDate : new Date() });
 });

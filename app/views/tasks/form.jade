@@ -1,0 +1,77 @@
+extends ../layouts/default
+
+block content
+  - var action = '/tasks'
+  if (!task.isNew)
+    - action += '/'+task.id
+
+  if (typeof errors !== 'undefined')
+    .fade.in.alert.alert-block.alert-error
+      a.close(data-dismiss="alert", href="javascript:void(0)") x
+      ul
+        each error in errors
+          li= error.type
+
+  .row
+    .span7
+      form.form-horizontal(method="post", action=action, enctype="multipart/form-data")
+        if (!task.isNew)
+          input(type="hidden", name="_method", value="PUT")
+          
+        if (!task.isNew)
+          .control-group
+            label.control-label(for='number') Number
+            .controls
+              input.input-small(type='text', name="number", value=task.number, readonly)  
+            
+        .control-group
+          label.control-label(for='task') Task
+          .controls
+            input.input-xxlarge(type='text', name="task", value=task.task, placeholder='Enter the title')  
+            
+        .control-group
+          label.control-label(for='description') Description
+          .controls
+            input#description.input-xxlarge(type='text', name="description", value=task.description, rows = 6, placeholder='Enter the description')
+            
+        .control-group
+          label.control-label(for='project') Project
+          .controls
+            select.input-xlarge(type='text', name="project", placeholder='Select project')
+              option
+              each project in projects
+                option(value = project.id, selected = project.id == task.project) [#{project.number}] - #{project.title}
+
+        if (!task.isNew)
+          .control-group
+            label.control-label(for='completion') Completion
+            .controls
+              input.input-small(type='number', name="completion", value=task.completion)
+            
+        .control-group
+          label.control-label(for='assigned_to') Assigned to
+          .controls
+            select.input-xlarge(name="assigned_to", value=task.assigned_to)
+              option
+              each user in users
+                option(value = user.id, selected = (user.id == task.assigned_to)) #{user.name}
+                
+        .control-group
+          label.control-label(for='priority') Priority
+          .controls
+            select.input-medium(name="priority", value=task.priority)
+              option Very high
+              option High
+              option(selected = task.isNew) Normal
+              option Low
+              
+        .control-group
+          label.control-label(for='due_date') Due date
+          .controls
+            input.input-small(type = 'text', name="due_date", data-date-format="dd/mm/yy", data-date = '12-02-2012', value=task.due_date, id = 'datepicker', placeholder='Select a date')
+            
+        .form-actions
+          button.btn.btn-primary(type='submit') Save changes
+          &nbsp;
+          a.btn(href='/tasks', title="cancel") Cancel
+        

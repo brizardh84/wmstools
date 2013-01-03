@@ -2,7 +2,8 @@
 var mongoose = require('mongoose'), 
 	Project = mongoose.model('Project'), 
 	User = mongoose.model('User'),
-	Contact = mongoose.model('Contact'),  
+	Contact = mongoose.model('Contact'), 
+	Task = mongoose.model('Task'), 
 	async = require('async');
 
 module.exports = function (app, passport, auth) {
@@ -109,6 +110,26 @@ module.exports = function (app, passport, auth) {
 	// tasks routes
 	var tasks = require('../app/controllers/tasks');
 	app.get('/tasks/', auth.requiresLogin, tasks.index);
+	app.get('/tasks/new', auth.requiresLogin, tasks.new);
+	app.post('/tasks', auth.requiresLogin, tasks.create);
+	app.get('/tasks/:taskId', tasks.show);
+	app.get('/tasks/:taskId/edit', auth.requiresLogin, tasks.edit);
+	app.put('/tasks/:taskId', auth.requiresLogin, tasks.update);
+	app.del('/tasks/:taskId', auth.requiresLogin, tasks.destroy);
+	app.param('taskId', function(req, res, next, id){
+		Task
+			.findOne({ _id : id })
+			.exec(function (err, task) {
+				if (err) {
+					return next(err);
+				}
+ 				if (!task) {
+ 					return next(new Error('Failed to load task ' + id));
+ 				}
+ 				req.task = task;
+ 				next();
+			})
+	})
 	
 	// home route
 	app.get('/', auth.requiresLogin, projects.index);
