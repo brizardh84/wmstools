@@ -119,6 +119,7 @@ module.exports = function (app, passport, auth) {
 	app.param('taskId', function(req, res, next, id){
 		Task
 			.findOne({ _id : id })
+			.populate('assigned_to')
 			.exec(function (err, task) {
 				if (err) {
 					return next(err);

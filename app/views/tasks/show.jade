@@ -9,7 +9,7 @@ block content
       p=task.description
       p.author
         span Assigned to :&nbsp;
-        a(href="/users/"+task.assigned_to._id)=task.task
+        a(href="/users/"+task.assigned_to._id)=task.assigned_to.name
       .date= formatDate(task.created_date, "%b %d, %Y at %I:%M %p")
   p
     br

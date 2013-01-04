@@ -5,13 +5,16 @@ header#header
       .container
         .nav-collapse
           ul.nav
-            li
+            li(class = title == 'List of Projects' ? "active" : "")
               a(href='/projects', title="project listing") Projects
-            li
+              
+            li(class = title == 'List of Documents' ? "active" : "")
               a(href='/documents', title="document listing") Documents
-            li
+              
+            li(class = title == 'List of Contacts' ? "active" : "")
               a(href='/contacts', title="contact listing") Contacts
-            li.dropdown
+              
+            li.dropdown(class = title == 'List of Tasks' ? "active" : "")
               a.dropdown-toggle(href='/tasks', title="task listing", data-toggle="dropdown") Tasks
               ul.dropdown-menu
                 li

@@ -51,19 +51,19 @@ block content
         .control-group
           label.control-label(for='assigned_to') Assigned to
           .controls
-            select.input-xlarge(name="assigned_to", value=task.assigned_to)
+            select.input-xlarge(name="assigned_to", value=task.assigned_to.id)
               option
               each user in users
-                option(value = user.id, selected = (user.id == task.assigned_to)) #{user.name}
+                option(value = user.id, selected = (user.id == task.assigned_to.id)) #{user.name}
                 
         .control-group
           label.control-label(for='priority') Priority
           .controls
             select.input-medium(name="priority", value=task.priority)
-              option Very high
-              option High
+              option(selected = task.priority == "Very high") Very high
+              option(selected = task.priority == "High") High
               option(selected = task.isNew) Normal
-              option Low
+              option(selected = task.priority == "Low") Low
               
         .control-group
           label.control-label(for='due_date') Due date

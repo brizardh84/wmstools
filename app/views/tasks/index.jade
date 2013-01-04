@@ -58,7 +58,14 @@ block content
             td 
               a(href = '#', id = 'assignedto', data-type='select', data-pk="1", data-url="/")= task.assigned_to.name
             td.align-center
-              a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").img.icon-circle-arrow-down
+              if (task.priority == "Very high")
+                a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").icon-circle-arrow-up
+              else if (task.priority == "High")
+                a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").icon-arrow-up
+              else if (task.priority == "Normal")
+                a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").icon-arrow-down
+              else if (task.priority == "Low")
+                a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").icon-circle-arrow-down
             td
               a.red(href = '#', id = 'date', class = task.isLate ? "red" : "", data-type='date', data-pk=task.id, data-url="/")= formatDate(task.due_date, "%Y-%m-%d")
             td.align-center
