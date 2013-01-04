@@ -22,7 +22,7 @@ block content
       
   // LETTERS
   - if (letters.length > 0)
-    div.letters.center
+    div.letters.align-center
       each letter in letters
         a(href = '/contacts/#'+letter) #{letter}
         - if (letter != letters.charAt(letters.length -1)) 

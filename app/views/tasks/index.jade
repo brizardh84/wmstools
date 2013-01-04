@@ -22,77 +22,62 @@ block content
         button.btn(type='submit', style = 'margin-left : 10px;') Filter
 
   legend Tasks
+  if (tasks.length > 0)
+    // Results
+    div
+      i Showing #{tasks.length} results out of #{count}
     
-  // Results
-  div
-    i Showing #{tasks.length} results out of #{count}
-    
-  table.table.table-condensed.table-hover.small(style = 'border:1px solid #ccc;')
-    thead
-      tr
-        th 
-          a #
-        th 
-          a Project
-        th.align-center 
-          a %
-        th 
-          a Task
-        th 
-          a Assigned to
-        th.align-center 
-          a Priority
-        th 
-          a Due date
-        th.align-center Quick actions
-    tbody
-      each task in tasks
-        tr(class = task.isLate ? "error" : "")
-          td= task.number
-          td 
-            a(href = '#', id = 'project', data-type='select', data-pk="1", data-url="/") [#{task.project.number}] - #{task.project.title}
-          td.align-center 
-            a(href = '#', id = 'completion', data-type='text', data-pk="1", data-url="/", data-emptytext = "0%")= task.completion +"%"
-          td 
-            a(href = '#', id = 'task', data-type='textarea', data-pk="1", data-url="/")= task.task
-          td 
-            a(href = '#', id = 'assignedto', data-type='select', data-pk="1", data-url="/")= task.assigned_to.name
-          td.align-center
-            a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").img.icon-circle-arrow-down
-          td
-            a.red(href = '#', id = 'date', class = task.isLate ? "red" : "", data-type='date', data-pk=task.id, data-url="/")= formatDate(task.due_date, "%Y-%m-%d")
-          td.align-center
-            a(href = '#', style = 'margin : 0px 1px;')
-              span.img.icon-check
-            a(href = '/tasks/' + task._id, style = 'margin : 0px 1px;')
-              span.img.icon-search
-            a(href = '/tasks/' + task._id + '/edit', style = 'margin : 0px 1px;')
-              span.img.icon-pencil
-            a(href = '#', style = 'margin : 0px 1px;')
-              span.img.icon-remove              
-    //
-      tr.error
-        td 2
-        td 
-          a(href = '#') 001431 - WMS
-        td.center 80%
-        td Section documents
-        td 
-          a(href = '#') Hugo Brizard
-        td.center 
-          span.img.icon-circle-arrow-up
-        td.red 2012-02-09
-        td.center
-          a(href = '#', style = 'margin : 0px 1px;')
-            span.img.icon-check
-          a(href = '#', style = 'margin : 0px 1px;')
-            span.img.icon-search
-          a(href = '#', style = 'margin : 0px 1px;')
-            span.img.icon-pencil
-          a(href = '#', style = 'margin : 0px 1px;')
-            span.img.icon-remove
-            
-  if (pages > 1)
-    .pagination.align-center
-      ul
-        != createPagination(pages, page)
+    table.table.table-condensed.table-hover.small(style = 'border:1px solid #ccc;')
+      thead
+        tr.task-header
+          th 
+            a #
+          th 
+            a Project
+          th.align-center 
+            a %
+          th 
+            a Task
+          th 
+            a Assigned to
+          th.align-center 
+            a Priority
+          th 
+            a Due date
+          th.align-center Quick actions
+      tbody
+        each task in tasks
+          tr(class = task.isLate ? "error" : "")
+            td= task.number
+            td 
+              a(href = '#', id = 'project', data-type='select', data-pk="1", data-url="/") [#{task.project.number}] - #{task.project.title}
+            td.align-center 
+              a(href = '#', id = 'completion', data-type='text', data-pk="1", data-url="/", data-emptytext = "0%")= task.completion +"%"
+            td 
+              a(href = '#', id = 'task', data-type='textarea', data-pk="1", data-url="/")= task.task
+            td 
+              a(href = '#', id = 'assignedto', data-type='select', data-pk="1", data-url="/")= task.assigned_to.name
+            td.align-center
+              a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").img.icon-circle-arrow-down
+            td
+              a.red(href = '#', id = 'date', class = task.isLate ? "red" : "", data-type='date', data-pk=task.id, data-url="/")= formatDate(task.due_date, "%Y-%m-%d")
+            td.align-center
+              a(href = '#', style = 'margin : 0px 1px;')
+                span.img.icon-check
+              a(href = '/tasks/' + task._id, style = 'margin : 0px 1px;')
+                span.img.icon-search
+              a(href = '/tasks/' + task._id + '/edit', style = 'margin : 0px 1px;')
+                span.img.icon-pencil
+              a(href = '#', style = 'margin : 0px 1px;')
+                span.img.icon-remove            
+              a(href = '#', style = 'margin : 0px 1px;')
+                span.img.icon-comment    
+              
+    if (pages > 1)
+      .pagination.align-center
+        ul
+          != createPagination(pages, page)
+  else
+    div
+      i No data found
+          

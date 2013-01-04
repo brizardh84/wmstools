@@ -13,7 +13,7 @@ block content
       .date= formatDate(task.created_date, "%b %d, %Y at %I:%M %p")
   p
     br
-    form.center.form-inline.confirm(action="/tasks/"+task.id, method="post")
+    form.align-center.form-inline.confirm(action="/tasks/"+task.id, method="post")
       a.btn(href='/tasks/'+task._id+'/edit', title="edit") Edit
       &nbsp;&nbsp;
       input(type="hidden", name="_method", value="DELETE")
