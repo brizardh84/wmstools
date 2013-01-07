@@ -29,7 +29,9 @@ exports.new = function(req, res){
 exports.create = function (req, res) {
 	var task = new Task(req.body);
 
-	task.user = req.user;
+	// Auto-update de la création
+	task.created_date = new Date;
+	task.created_by = req.user;
 	
 	Task.count().exec(function (err, count) {
   		task.number = count + 1;
@@ -45,8 +47,6 @@ exports.create = function (req, res) {
 			}
 		});
 	});
-	
-
 }
 
 // Edit a task
@@ -74,6 +74,10 @@ exports.update = function(req, res){
 	var task = req.task
 
 	task = _.extend(task, req.body)
+	
+	// Auto-update de la modification
+	task.modified_date = new Date;
+	task.modified_by = req.user;
 	
 	task.save(function(err, task) {
 		if (err) {
@@ -143,6 +147,8 @@ exports.index = function(req, res){
 				.find(filters)
 				.populate('assigned_to')
 				.populate('project')
+				.populate('created_by')
+				.populate('modified_by')
 				.sort({'created_date': -1}) // sort by date
 				.limit(perPage)
 				.skip(perPage * page)

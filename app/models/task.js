@@ -12,7 +12,12 @@ var TaskSchema = new Schema({
 	assigned_to : {type : Schema.ObjectId, ref : 'User'}, 
 	priority : {type : String, enum : ['Very high', 'High', 'Normal', 'Low']},
 	due_date : {type : Date},
-	created_date  : {type : Date, default : Date.now}
+	
+	// Champs Auto-gestion
+	created_date  : {type : Date},
+	created_by : {type : Schema.ObjectId, ref : 'User'},
+	modified_date : { type : Date},
+	modified_by : { type:Schema.ObjectId, ref : 'User'}
 });
 
 mongoose.model('Task', TaskSchema);

@@ -7,6 +7,6 @@ module.exports = {
 
     }, 
     production: {
-
+		db: 'mongodb://wms:a12345@ds047207.mongolab.com:47207/wmstools_prod'
     }
 }

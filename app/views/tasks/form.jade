@@ -17,23 +17,27 @@ block content
       form.form-horizontal(method="post", action=action, enctype="multipart/form-data")
         if (!task.isNew)
           input(type="hidden", name="_method", value="PUT")
-          
+        
+        // Number  
         if (!task.isNew)
           .control-group
             label.control-label(for='number') Number
             .controls
               input.input-small(type='text', name="number", value=task.number, readonly)  
-            
+        
+        // Task   
         .control-group
           label.control-label(for='task') Task
           .controls
             input.input-xxlarge(type='text', name="task", value=task.task, placeholder='Enter the title')  
-            
+        
+        // Description    
         .control-group
           label.control-label(for='description') Description
           .controls
             input#description.input-xxlarge(type='text', name="description", value=task.description, rows = 6, placeholder='Enter the description')
-            
+        
+        // Project    
         .control-group
           label.control-label(for='project') Project
           .controls
@@ -41,21 +45,35 @@ block content
               option
               each project in projects
                 option(value = project.id, selected = project.id == task.project) [#{project.number}] - #{project.title}
-
+        
+        // Completion                
         if (!task.isNew)
           .control-group
             label.control-label(for='completion') Completion
             .controls
               input.input-small(type='number', name="completion", value=task.completion)
-            
-        .control-group
-          label.control-label(for='assigned_to') Assigned to
-          .controls
-            select.input-xlarge(name="assigned_to", value=task.assigned_to.id)
-              option
-              each user in users
-                option(value = user.id, selected = (user.id == task.assigned_to.id)) #{user.name}
-                
+
+        
+        // Assigned To        
+        if (!task.isNew)    
+          .control-group
+            label.control-label(for='assigned_to') Assigned to
+            .controls
+              select.input-xlarge(name="assigned_to", value=task.assigned_to.id)
+                option
+                each user in users
+                  option(value = user.id, selected = (user.id == task.assigned_to.id)) #{user.name}
+        else
+          .control-group
+            label.control-label(for='assigned_to') Assigned to
+            .controls
+              select.input-xlarge(name="assigned_to")
+                option
+                each user in users
+                  option(value = user.id) #{user.name}  
+
+        
+        // Priority                
         .control-group
           label.control-label(for='priority') Priority
           .controls
@@ -64,12 +82,14 @@ block content
               option(selected = task.priority == "High") High
               option(selected = task.isNew) Normal
               option(selected = task.priority == "Low") Low
-              
+        
+        // Due Date      
         .control-group
           label.control-label(for='due_date') Due date
           .controls
             input.input-small(type = 'text', name="due_date", data-date-format="dd/mm/yy", data-date = '12-02-2012', value=task.due_date, id = 'datepicker', placeholder='Select a date')
-            
+        
+        // Actions    
         .form-actions
           button.btn.btn-primary(type='submit') Save changes
           &nbsp;

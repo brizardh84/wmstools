@@ -49,7 +49,7 @@ block content
         each task in tasks
           tr(class = task.isLate ? "error" : "")
             td= task.number
-            td 
+            td
               a(href = '#', id = 'project', data-type='select', data-pk="1", data-url="/") [#{task.project.number}] - #{task.project.title}
             td.align-center 
               a(href = '#', id = 'completion', data-type='text', data-pk="1", data-url="/", data-emptytext = "0%")= task.completion +"%"
@@ -67,7 +67,7 @@ block content
               else if (task.priority == "Low")
                 a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").icon-circle-arrow-down
             td
-              a.red(href = '#', id = 'date', class = task.isLate ? "red" : "", data-type='date', data-pk=task.id, data-url="/")= formatDate(task.due_date, "%Y-%m-%d")
+              a(href = '#', id = 'date', class = task.isLate ? "red" : "", data-type='date', data-pk=task.id, data-url="/")= formatDate(task.due_date, "%b %d, %Y at %i:%M %p")
             td.align-center
               a(href = '#', style = 'margin : 0px 1px;')
                 span.img.icon-check
