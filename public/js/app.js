@@ -69,12 +69,12 @@ $(document).ready(function () {
 			window.location = "/documents?project=" + $(this).attr('number');
 	})
 	
-	$('#project').editable({});
-	$('#task').editable({});
-	$('#date').editable({ format : 'yyyy-mm-dd', autoclose : true});
-	$('#priority').editable({ emptytext : '', source :  ['Very High', 'High', 'Normal', 'Low']});
-	$('#assignedto').editable({ });
-	$('#completion').editable({ });
+	$('[id^=task-project]').editable({});
+	$('[id^=task-task]').editable({});
+	$('[id^=task-duedate]').editable({ format : 'yyyy-mm-dd', autoclose : true});
+	$('[id^=task-priority]').editable({ emptytext : '', source :  ['Very High', 'High', 'Normal', 'Low']});
+	$('[id^=task-assignedto]').editable({ });
+	$('[id^=task-completion]').editable({ });
 	
 	$('#datepicker').datepicker({ autoclose : true, startDate : new Date() });
 });

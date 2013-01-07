@@ -55,6 +55,7 @@ module.exports = function (app, passport, auth) {
  				}
  				req.project = project;
 
+				// On veut ajouter l'information sur le user du commentaire
  				var populateComments = function (comment, cb) {
 	 				User
 						.findOne({ _id: comment._user })
@@ -120,6 +121,7 @@ module.exports = function (app, passport, auth) {
 		Task
 			.findOne({ _id : id })
 			.populate('assigned_to')
+			.populate('worklogs', null, null, {sort : [['date', 1]]})
 			.exec(function (err, task) {
 				if (err) {
 					return next(err);
@@ -127,10 +129,35 @@ module.exports = function (app, passport, auth) {
  				if (!task) {
  					return next(new Error('Failed to load task ' + id));
  				}
- 				req.task = task;
- 				next();
+ 				req.task = task; 				 			
+				
+				// On veut ajouter l'information sur le user du commentaire
+ 				var populateWorklogs = function (worklog, cb) {
+	 				User
+						.findOne({ _id: worklog.created_by })
+	  					.select('name')
+						.exec(function (err, user) {
+							if (err) {
+								return next(err);
+							}
+							worklog.author = user;
+							cb(null, worklog);
+						})
+        		}
+
+				if (task.worklogs.length) {
+					async.map(req.task.worklogs, populateWorklogs, function (err, results) {
+						next(err);
+					})
+				} else {
+					next();
+				}
 			})
 	})
+	
+	// worklog routes
+	var worklogs = require('../app/controllers/worklogs');
+	app.post('/tasks/:taskId/worklogs', auth.requiresLogin, worklogs.create);
 	
 	// home route
 	app.get('/', auth.requiresLogin, projects.index);

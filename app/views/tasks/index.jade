@@ -24,7 +24,7 @@ block content
   legend Tasks
   if (tasks.length > 0)
     // Results
-    div
+    div(style = "padding-bottom : 10px")
       i Showing #{tasks.length} results out of #{count}
     
     table.table.table-condensed.table-hover.small(style = 'border:1px solid #ccc;')
@@ -32,52 +32,52 @@ block content
         tr.task-header
           th 
             a #
-          th 
+          th(width = "170px") 
             a Project
-          th.align-center 
+          th.align-center(width = "1px") 
             a %
           th 
             a Task
-          th 
+          th(width = "80px")  
             a Assigned to
-          th.align-center 
+          th.align-center(width = "1px") 
             a Priority
-          th 
+          th.align-center(width = "70px") 
             a Due date
-          th.align-center Quick actions
+          th.align-center(width = "80px") Quick actions
       tbody
         each task in tasks
           tr(class = task.isLate ? "error" : "")
             td= task.number
             td
-              a(href = '#', id = 'project', data-type='select', data-pk="1", data-url="/") [#{task.project.number}] - #{task.project.title}
+              a(href = '#', id = 'task-project-' + task.number, data-type='select', data-pk="1", data-url="/") [#{task.project.number}] - #{task.project.title}
             td.align-center 
-              a(href = '#', id = 'completion', data-type='text', data-pk="1", data-url="/", data-emptytext = "0%")= task.completion +"%"
+              a(href = '#', id = 'task-completion-' + task.number, data-type='text', data-pk="1", data-url="/", data-emptytext = "0%")= task.completion +"%"
             td 
-              a(href = '#', id = 'task', data-type='textarea', data-pk="1", data-url="/")= task.task
+              a(href = '#', id = 'task-task-' + task.number, data-type='textarea', data-pk="1", data-url="/")= task.task
             td 
-              a(href = '#', id = 'assignedto', data-type='select', data-pk="1", data-url="/")= task.assigned_to.name
+              a(href = '#', id = 'task-assignedto-' + task.number, data-type='select', data-pk="1", data-url="/")= task.assigned_to.name
             td.align-center
               if (task.priority == "Very high")
-                a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").icon-circle-arrow-up
+                a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-circle-arrow-up
               else if (task.priority == "High")
-                a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").icon-arrow-up
+                a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-arrow-up
               else if (task.priority == "Normal")
-                a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").icon-arrow-down
+                a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-arrow-down
               else if (task.priority == "Low")
-                a(href = '#', id = 'priority', data-type='select', data-pk="1", data-url="/").icon-circle-arrow-down
-            td
-              a(href = '#', id = 'date', class = task.isLate ? "red" : "", data-type='date', data-pk=task.id, data-url="/")= formatDate(task.due_date, "%b %d, %Y at %i:%M %p")
+                a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-circle-arrow-down
             td.align-center
-              a(href = '#', style = 'margin : 0px 1px;')
+              a(href = '#', id = 'task-duedate-' + task.number, class = task.isLate ? "red" : "", data-type='date', data-pk=task.id, data-url="/")= formatDate(task.due_date, "%b %d, %Y at %i:%M %p")
+            td.align-center
+              a(href = '#', style = 'margin : 0px 1px;', rel = "tooltip", title = "Mark as finished")
                 span.img.icon-check
-              a(href = '/tasks/' + task._id, style = 'margin : 0px 1px;')
+              a(href = '/tasks/' + task._id, style = 'margin : 0px 1px;', rel = "tooltip", title = "View details")
                 span.img.icon-search
-              a(href = '/tasks/' + task._id + '/edit', style = 'margin : 0px 1px;')
+              a(href = '/tasks/' + task._id + '/edit', style = 'margin : 0px 1px;', rel = "tooltip", title = "Edit")
                 span.img.icon-pencil
-              a(href = '#', style = 'margin : 0px 1px;')
+              a(href = '#', style = 'margin : 0px 1px;', rel = "tooltip", title = "Delete")
                 span.img.icon-remove            
-              a(href = '#', style = 'margin : 0px 1px;')
+              a(href = '#', style = 'margin : 0px 1px;', rel = "tooltip", title = "View worklogs (" + task.worklogs.length +")")
                 span.img.icon-comment    
               
     if (pages > 1)

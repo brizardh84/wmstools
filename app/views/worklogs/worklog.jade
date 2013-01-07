@@ -1,0 +1,17 @@
+if (worklog && worklog.created_by)
+  case worklog.type
+    when "Update"
+      clsWorklog = "worklog-update"
+    when "Inquiry"
+      clsWorklog = "worklog-inquiry"
+    when "Follow-up"
+      clsWorklog = "worklog-followup"
+
+  .worklog(class = clsWorklog)    
+    b #{worklog.type} 
+    span(style = "font-size : 11px;") by 
+    a(href="/users/"+worklog.author._id) #{worklog.author.name} 
+    span.date(style = 'color : #666') on #{formatDate(worklog.date, "%b %d, %Y at %I:%M %p")}    
+    
+    // avec != on peut interpréter les balises HTML, sinon ça affiche normalement
+    .worklog-body!= worklog.body

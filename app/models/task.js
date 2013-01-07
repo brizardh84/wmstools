@@ -12,6 +12,7 @@ var TaskSchema = new Schema({
 	assigned_to : {type : Schema.ObjectId, ref : 'User'}, 
 	priority : {type : String, enum : ['Very high', 'High', 'Normal', 'Low']},
 	due_date : {type : Date},
+	worklogs: [{type : Schema.ObjectId, ref : 'Worklog'}], 
 	
 	// Champs Auto-gestion
 	created_date  : {type : Date},

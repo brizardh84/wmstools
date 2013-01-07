@@ -95,6 +95,7 @@ exports.update = function(req, res){
 // View a task
 exports.show = function(req, res){
 	res.render('tasks/show', {
+		worklogs : req.worklogs,
 		task: req.task
 	})
 }
@@ -149,7 +150,7 @@ exports.index = function(req, res){
 				.populate('project')
 				.populate('created_by')
 				.populate('modified_by')
-				.sort({'created_date': -1}) // sort by date
+				.sort({'number': -1}) // sort by date
 				.limit(perPage)
 				.skip(perPage * page)
 				.exec(function(err, tasks) {

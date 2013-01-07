@@ -18,3 +18,11 @@ block content
       &nbsp;&nbsp;
       input(type="hidden", name="_method", value="DELETE")
       button.btn.btn-danger(type="submit") Delete
+      
+  p
+    br
+    h2 Worklogs (#{task.worklogs.length})
+    each worklog in task.worklogs
+      include ../worklogs/worklog
+    br
+    include ../worklogs/form

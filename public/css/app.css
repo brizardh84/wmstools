@@ -167,3 +167,27 @@ div.contactsinput div { display:block; float: left; }
 .task-header {
 	background-color : #DBECFC;
 }
+
+/* Worklogs */
+.worklog {
+	padding : 5px;
+	border : 1px solid #999;
+	border-radius : 6px;
+	margin : 5px 0px;
+}
+
+.worklog-update {
+	background-color : #DBECFC;
+}
+
+.worklog-inquiry {
+	background-color : #EAC0C3;
+}
+
+.worklog-followup {
+	background-color : #C0EACE;
+}
+
+.worklog-body {
+	padding-left : 20px;
+}

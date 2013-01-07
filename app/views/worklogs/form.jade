@@ -1,0 +1,18 @@
+h4 Add Worklog
+form.form-horizontal(method="post", action="/tasks/#{task._id}/worklogs")
+  .control-group
+    label.control-label(for='date') Work type
+    .controls
+      select.input(type='text', rows="6", name="type", placeholder='Select type')
+        option(value = "Update") Status Update
+        option(value = "Inquiry") Inquiry
+        option(value = "Follow-up") Follow-up
+  .control-group
+    label.control-label(for='date') Date
+    .controls
+      input(type = 'text', name="date", data-date-format="mm/dd/yyyy", id = 'datepicker', placeholder='Pick a date')
+  .control-group
+    label.control-label(for='date') What was done?
+    .controls
+      textarea.input-xxlarge(type='text', rows="6", name="body", placeholder='Write down all relevant information regarding the work you did on this task')
+  button.btn.btn-primary(type='submit') Add worklog
