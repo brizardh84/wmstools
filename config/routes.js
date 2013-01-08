@@ -13,6 +13,7 @@ module.exports = function (app, passport, auth) {
 	app.get('/login', users.login);
 	app.get('/signup', users.signup);
 	app.get('/logout', users.logout);
+	app.get('/users/getAll', auth.requiresLogin, users.getAll);
 	app.post('/users', users.create);
 	app.post('/users/session', passport.authenticate('local', {failureRedirect: '/login'}), users.session);
 	app.get('/users/:userId', users.show);
@@ -117,6 +118,7 @@ module.exports = function (app, passport, auth) {
 	app.get('/tasks/:taskId/edit', auth.requiresLogin, tasks.edit);
 	app.put('/tasks/:taskId', auth.requiresLogin, tasks.update);
 	app.del('/tasks/:taskId', auth.requiresLogin, tasks.destroy);
+	app.post('/tasks/quicksave', auth.requiresLogin, tasks.quicksave)
 	app.param('taskId', function(req, res, next, id){
 		Task
 			.findOne({ _id : id })

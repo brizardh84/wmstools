@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'), 
-	User = mongoose.model('User');
+	User = mongoose.model('User'),
+	async = require('async');
 
 exports.signin = function (req, res) {}
 
@@ -58,4 +59,21 @@ exports.show = function (req, res) {
 		title: user.name, 
 		user: user
 	});
+}
+
+// get list
+exports.getAll = function(req, res) {
+	User
+		.find()
+		.sort({'name' : 1})
+		.exec(function(err, users) {
+			var populateUsers = function(user, cb) {
+				user = { value : user._id, text : user.name};
+				cb(null, user);
+			}
+	
+			async.map(users, populateUsers, function(err, results) {
+				res.send(results);
+			})
+		});
 }

@@ -168,6 +168,10 @@ div.contactsinput div { display:block; float: left; }
 	background-color : #DBECFC;
 }
 
+.completed {
+	background-color : #C0EACE;
+}
+
 /* Worklogs */
 .worklog {
 	padding : 5px;

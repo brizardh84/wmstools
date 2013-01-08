@@ -1,7 +1,8 @@
 // Task schema
-
 var mongoose = require('mongoose'), 
-	Schema = mongoose.Schema;
+	Schema = mongoose.Schema,
+	moment = require('moment'),
+	dateMask = 'YYYY-MM-DD';
 
 var TaskSchema = new Schema({
 	number : Number,
@@ -19,6 +20,14 @@ var TaskSchema = new Schema({
 	created_by : {type : Schema.ObjectId, ref : 'User'},
 	modified_date : { type : Date},
 	modified_by : { type:Schema.ObjectId, ref : 'User'}
+});
+
+TaskSchema.path('completion').validate(function (completion) {
+	return completion >= 0 && completion <= 100;
+}, 'Completion must be between 0 and 100');
+
+TaskSchema.virtual('due_date_yyyymmdd').get(function() {
+	return moment(this.due_date).format(dateMask);
 });
 
 mongoose.model('Task', TaskSchema);

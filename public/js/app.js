@@ -69,12 +69,45 @@ $(document).ready(function () {
 			window.location = "/documents?project=" + $(this).attr('number');
 	})
 	
-	$('[id^=task-project]').editable({});
-	$('[id^=task-task]').editable({});
-	$('[id^=task-duedate]').editable({ format : 'yyyy-mm-dd', autoclose : true});
-	$('[id^=task-priority]').editable({ emptytext : '', source :  ['Very High', 'High', 'Normal', 'Low']});
-	$('[id^=task-assignedto]').editable({ });
-	$('[id^=task-completion]').editable({ });
+	$('[id^=task-task]').editable({
+		success : function(response, newValue) {
+			if (response.success === false) return response.msg;
+		}
+	});
+	$('[id^=task-duedate]').editable({ 
+		autoclose : true
+	});
+	$('[id^=task-priority]').editable({ 
+		emptytext : '', 
+		source :  ['Very high', 'High', 'Normal', 'Low'],
+		display : function(value, sourceData) {
+			switch (value) {
+				case "Very high" :
+					$(this)[0].className = $(this)[0].className.replace(/\bicon-.*?\b/g, 'icon-circle-arrow-up ');
+					break;
+				case "High" : 
+					$(this)[0].className = $(this)[0].className.replace(/\bicon-.*?\b/g, 'icon-arrow-up ');
+					break;
+				case "Normal" : 
+					$(this)[0].className = $(this)[0].className.replace(/\bicon-.*?\b/g, 'icon-arrow-down ');
+					break;
+				case "Low" : 
+					$(this)[0].className = $(this)[0].className.replace(/\bicon-.*?\b/g, 'icon-circle-arrow-down ');
+					break;
+			} 
+		}
+	});
+	$('[id^=task-assignedto]').editable({ 
+		source : "users/getAll"
+	});
+	$('[id^=task-completion]').editable({
+		success : function(response, newValue) {
+			if (response.success === false) return response.msg;
+		},
+		display: function(value, sourceData) {
+		    $(this).html(value + '%');
+		}
+	});
 	
-	$('#datepicker').datepicker({ autoclose : true, startDate : new Date() });
+	$('#datepicker').datepicker({ autoclose : true });
 });

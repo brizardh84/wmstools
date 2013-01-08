@@ -92,6 +92,23 @@ exports.update = function(req, res){
 	})
 }
 
+// Sauvgarder les tâches avec le quick-editing
+exports.quicksave = function(req, res) {	
+	var fieldname = req.body.name;
+
+	Task.findOne({ _id: req.body.pk }, function (err, task) {
+		task[fieldname] = req.body.value;
+			
+		task.save(function(err, task) {
+			if (err) {
+				res.send({success : false, msg : err.message})
+			} else {
+				res.send({success : true})
+			}
+		})
+	});	
+}
+
 // View a task
 exports.show = function(req, res){
 	res.render('tasks/show', {
@@ -177,6 +194,4 @@ exports.index = function(req, res){
 				})
 		}
 	);
-
-
 }

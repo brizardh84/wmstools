@@ -21,5 +21,6 @@
     , "async": "latest"
     , "nodemon": "latest"
     , "pdfkit": "latest"
+    , "moment": "latest"
   }
 }
