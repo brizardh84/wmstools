@@ -1,49 +1,49 @@
 extends ../layouts/default
 
 block content
-  - var action = '/contacts'
-  if (!contact.isNew)
-    - action += '/'+contact.id
+	- var action = '/contacts'
+	if (!contact.isNew)
+		- action += '/'+contact.id
 
-  if (typeof errors !== 'undefined')
-    .fade.in.alert.alert-block.alert-error
-      a.close(data-dismiss="alert", href="javascript:void(0)") x
-      ul
-        each error in errors
-          li= error.type
+	if (typeof errors !== 'undefined')
+		.fade.in.alert.alert-block.alert-error
+			a.close(data-dismiss="alert", href="javascript:void(0)") x
+			ul
+				each error in errors
+					li= error.type
 
-  .row
-    .span7
-      form.form-horizontal(method="post", action=action, enctype="multipart/form-data")
-        if (!contact.isNew)
-          input(type="hidden", name="_method", value="PUT")
+	.row
+		.span7
+			form.form-horizontal(method="post", action=action, enctype="multipart/form-data")
+				if (!contact.isNew)
+					input(type="hidden", name="_method", value="PUT")
 
-        .control-group
-          label.control-label(for='firstname') Prénom
-          .controls
-            input#firstname.input-xlarge(type='text', name="firstname", value=contact.firstname)
-            
-        .control-group
-          label.control-label(for='lastname') Nom
-          .controls
-            input#lastname.input-xlarge(type='text', name="lastname", value=contact.lastname)
-        
-        .control-group
-          label.control-label(for='number') Email
-          .controls
-            input#email.input-xlarge(type='text', name="email", value=contact.email, placeholder='firstname.lastname@snclavalin.com')
+				.control-group
+					label.control-label(for='firstname') Prénom
+					.controls
+						input#firstname.input-xlarge(type='text', name="firstname", value=contact.firstname)
+	
+				.control-group
+					label.control-label(for='lastname') Nom
+					.controls
+						input#lastname.input-xlarge(type='text', name="lastname", value=contact.lastname)
+	
+				.control-group
+					label.control-label(for='number') Email
+					.controls
+						input#email.input-xlarge(type='text', name="email", value=contact.email, placeholder='firstname.lastname@snclavalin.com')
+	
+				.control-group
+					label.control-label(for='phone') Phone
+					.controls
+						input#phone.input-xlarge(type='text', name="phone", value=contact.phone, placeholder='(XXX) XXX-XXXX')
+	
+				.control-group
+					label.control-label(for='extension') Extension
+					.controls
+						input#extension.input-xlarge(type='text', name="extension", value=contact.extension, placeholder='XXXX')
 
-        .control-group
-          label.control-label(for='phone') Phone
-          .controls
-            input#phone.input-xlarge(type='text', name="phone", value=contact.phone, placeholder='(XXX) XXX-XXXX')
-
-        .control-group
-          label.control-label(for='extension') Extension
-          .controls
-            input#extension.input-xlarge(type='text', name="extension", value=contact.extension, placeholder='XXXX')
-
-        .form-actions
-          button.btn.btn-primary(type='submit') Save changes
-          &nbsp;
-          a.btn(href='/contacts', title="cancel") Cancel
+				.form-actions
+					button.btn.btn-primary(type='submit') Save changes
+					&nbsp;
+					a.btn(href='/contacts', title="cancel") Cancel

@@ -1,40 +1,40 @@
 extends ../layouts/default
 
 block main
-  h2 Contacts 
-  a.new(href='/contacts/new', title="new contact") Create New         
+	h2 Contacts 
+	a.new(href='/contacts/new', title="new contact") Create New         
 
 block content  
-  // SEARCH
-  form(method="get", action="?search=", enctype="multipart/form-data")
-    .search
-      .control-group
-        .controls
-          .input-prepend.input-append
-            span.add-on
-              i.icon-search
-            input#search(type='text', name="search", value = p_search, placeholder='Search for contacts')
-            button.btn(type='submit') GO
-  
-  // Results
-  div
-    i Showing #{contacts.length} results out of #{count}
-      
-  // LETTERS
-  - if (letters.length > 0)
-    div.letters.align-center
-      each letter in letters
-        a(href = '/contacts/#'+letter) #{letter}
-        - if (letter != letters.charAt(letters.length -1)) 
-          span  - 
-              
-  // CONTACTS        
-  - for (var i =0; i < contacts.length; i++) {
-  -   var contact = contacts[i];  
-  -   if (i == 0 || contacts[i-1].lastname.charAt(0) !== contacts[i].lastname.charAt(0)) {
-        div.clearboth
-          div.contactletter(id = 'letter' + contact.lastname.charAt(0)) #{contact.lastname.charAt(0)}
-  -   }    
-  a.btn.btn-info.contactbox(id = "popover", rel = "popover", title = contact.fullname + "<span style = 'font-size : 12px'> - <a href = '/contacts/"+contact._id + "/edit'> Edit</a></span>", data-info = contact, data-toggle = "button", style = "margin:5px;") #{contact.fullname_inverted}
-  - }
+	// SEARCH
+	form(method="get", action="?search=", enctype="multipart/form-data")
+		.search
+			.control-group
+				.controls
+					.input-prepend.input-append
+						span.add-on
+							i.icon-search
+						input#search(type='text', name="search", value = p_search, placeholder='Search for contacts')
+						button.btn(type='submit') GO
+
+	// Results
+	div
+		i Showing #{contacts.length} results out of #{count}
+
+	// LETTERS
+	- if (letters.length > 0)
+		div.letters.align-center
+			each letter in letters
+				a(href = '/contacts/#'+letter) #{letter}
+				- if (letter != letters.charAt(letters.length -1)) 
+					span  - 
+
+	// CONTACTS        
+	- for (var i =0; i < contacts.length; i++) {
+		- var contact = contacts[i];  
+		- if (i == 0 || contacts[i-1].lastname.charAt(0) !== contacts[i].lastname.charAt(0)) {
+				div.clearboth
+				div.contactletter(id = 'letter' + contact.lastname.charAt(0)) #{contact.lastname.charAt(0)}
+		- }    
+	a.btn.btn-info.contactbox(id = "popover", rel = "popover", title = contact.fullname + "<span style = 'font-size : 12px'> - <a href = '/contacts/"+contact._id + "/edit'> Edit</a></span>", data-info = contact, data-toggle = "button", style = "margin:5px;") #{contact.fullname_inverted}
+	- }
   

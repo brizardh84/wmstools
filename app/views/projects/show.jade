@@ -1,40 +1,40 @@
 extends ../layouts/default
 
 block main
-  h1.left #{project.title} (#{project.number})
+	h1.left #{project.title} (#{project.number})
 
 block content
-  .row
-    .span9
-      p=project.description
-      p.author
-        span Author :&nbsp;
-        a(href="/users/"+project.user._id)=project.user.name
-      .date= formatDate(project.createdAt, "%b %d, %Y at %I:%M %p")
-      if (project.tags)
-        .tags
-          | Tags :&nbsp;
-          each tag in project.tags.split(',')
-            a.tag(href="/tags/"+tag)
-              i.icon-tags
-              |  #{tag}
-      br
-      a(target="_blank", href="http://www.maps.google.com?daddr=" + project.location.coordinates.latitude + "," + project.location.coordinates.longitude + "&z=4") View on map
-  p
-    br
-    form.center.form-inline.confirm(action="/projects/"+project.id, method="post")
-      a.btn(href='/projects/'+project._id+'/edit', title="edit") Edit
-      &nbsp;&nbsp;
-      input(type="hidden", name="_method", value="DELETE")
-      button.btn.btn-danger(type="submit") Delete
-  p
-    br
-    a.btn.btn-success(href='/projects/generate_preproposition/'+project._id, title="generate pdf") Generate PDF
-    - if (generatedpdf)
-      p Allo
-  p
-    br
-    h2 Comments
-    each comment in project.comments
-      include ../comments/comment
-    include ../comments/form
+	.row
+		.span9
+			p=project.description
+			p.author
+				span Author :&nbsp;
+				a(href="/users/"+project.user._id)=project.user.name
+			.date= formatDate(project.createdAt, "%b %d, %Y at %I:%M %p")
+			if (project.tags)
+				.tags
+					| Tags :&nbsp;
+					each tag in project.tags.split(',')
+						a.tag(href="/tags/"+tag)
+							i.icon-tags
+							|  #{tag}
+		br
+		a(target="_blank", href="http://www.maps.google.com?daddr=" + project.location.coordinates.latitude + "," + project.location.coordinates.longitude + "&z=4") View on map
+	p
+		br
+		form.center.form-inline.confirm(action="/projects/"+project.id, method="post")
+			a.btn(href='/projects/'+project._id+'/edit', title="edit") Edit
+			&nbsp;&nbsp;
+			input(type="hidden", name="_method", value="DELETE")
+			button.btn.btn-danger(type="submit") Delete
+	p
+		br
+		a.btn.btn-success(href='/projects/generate_preproposition/'+project._id, title="generate pdf") Generate PDF
+		- if (generatedpdf)
+			p Allo
+	p
+		br
+		h2 Comments
+		each comment in project.comments
+			include ../comments/comment
+		include ../comments/form

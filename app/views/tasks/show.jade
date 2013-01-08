@@ -1,28 +1,27 @@
 extends ../layouts/default
 
 block main
-  h2.left= task.task
+	h2.left= task.task
 
 block content
-  .row
-    .span9
-      p=task.description
-      p.author
-        span Assigned to :&nbsp;
-        a(href="/users/"+task.assigned_to._id)=task.assigned_to.name
-      .date= formatDate(task.created_date, "%b %d, %Y at %I:%M %p")
-  p
-    br
-    form.align-center.form-inline.confirm(action="/tasks/"+task.id, method="post")
-      a.btn(href='/tasks/'+task._id+'/edit', title="edit") Edit
-      &nbsp;&nbsp;
-      input(type="hidden", name="_method", value="DELETE")
-      button.btn.btn-danger(type="submit") Delete
-      
-  p
-    br
-    h2 Worklogs (#{task.worklogs.length})
-    each worklog in task.worklogs
-      include ../worklogs/worklog
-    br
-    include ../worklogs/form
+	.row
+		.span9
+			p=task.description
+			p.author
+				span Assigned to :&nbsp;
+				a(href="/users/"+task.assigned_to._id)=task.assigned_to.name
+			.date= formatDate(task.created_date, "%b %d, %Y at %I:%M %p")
+	p
+		br
+		form.align-center.form-inline.confirm(action="/tasks/"+task.id, method="post")
+			a.btn(href='/tasks/'+task._id+'/edit', title="edit") Edit
+			&nbsp;&nbsp;
+			input(type="hidden", name="_method", value="DELETE")
+			button.btn.btn-danger(type="submit") Delete
+	p
+		br
+		h2 Worklogs (#{task.worklogs.length})
+		each worklog in task.worklogs
+			include ../worklogs/worklog
+		br
+		include ../worklogs/form

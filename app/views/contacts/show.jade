@@ -1,13 +1,12 @@
 extends ../layouts/default
 
 block main
-  h1 #{contact.firstname} #{contact.lastname}
-  
-  p
-    br
-    form.center.form-inline.confirm(action="/contacts/"+contact.id, method="post")
-      a.btn(href='/contacts/'+contact._id+'/edit', title="edit") Edit
-      &nbsp;&nbsp;
-      input(type="hidden", name="_method", value="DELETE")
-      button.btn.btn-danger(type="submit") Delete
+	h2 #{contact.firstname} #{contact.lastname}
 
+	p
+		br
+		form.center.form-inline.confirm(action="/contacts/"+contact.id, method="post")
+			a.btn(href='/contacts/'+contact._id+'/edit', title="edit") Edit
+			&nbsp;&nbsp;
+			input(type="hidden", name="_method", value="DELETE")
+			button.btn.btn-danger(type="submit") Delete

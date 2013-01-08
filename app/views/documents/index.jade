@@ -1,32 +1,32 @@
 extends ../layouts/default
 
 block main
-  h2 Documents 
+	h2 Documents 
     
 block content
-  div.tabbable.tabs-left#projecttabs
-    ul.nav.nav-tabs
-      each project in projects
-        li(class = (project.number == selectedproject) ? 'active' : '')
-          a.ellipsistab(href = '#' + project.number, data-toggle = "tab", title = project.title, number = project.number) 
-            b= project.number
-            br 
-            i(style = 'color : #000')= project.title
+	div.tabbable.tabs-left#projecttabs
+		ul.nav.nav-tabs
+			each project in projects
+				li(class = (project.number == selectedproject) ? 'active' : '')
+					a.ellipsistab(href = '#' + project.number, data-toggle = "tab", title = project.title, number = project.number) 
+						b= project.number
+						br 
+						i(style = 'color : #000')= project.title
 
 //
-    div.tab-content
-      if (files.length > 0) 
-        each file in files
-          if (file.type == "dir")
-            div.doc-section-header
-              span= file.name 
-          else if (file.type == "file")
-            div.doc-section-row
-              table(border = 1) 
-                tr
-                  td
-                    a(href = file.path, target = "_blank") #{file.name} 
-                  td
-                    span= file.stat.ctime
-      else
-        p No Files
+		div.tab-content
+			if (files.length > 0) 
+				each file in files
+					if (file.type == "dir")
+						div.doc-section-header
+							span= file.name 
+					else if (file.type == "file")
+						div.doc-section-row
+							table(border = 1) 
+								tr
+									td
+										a(href = file.path, target = "_blank") #{file.name} 
+									td
+										span= file.stat.ctime
+			else
+				p No Files

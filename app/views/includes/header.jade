@@ -1,32 +1,31 @@
-
 header#header
-  .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
-    .navbar-inner
-      .container
-        .nav-collapse
-          ul.nav
-            li(class = title == 'List of Projects' ? "active" : "")
-              a(href='/projects', title="project listing") Projects
-              
-            li(class = title == 'List of Documents' ? "active" : "")
-              a(href='/documents', title="document listing") Documents
-              
-            li(class = title == 'List of Contacts' ? "active" : "")
-              a(href='/contacts', title="contact listing") Contacts
-              
-            li.dropdown(class = title == 'List of Tasks' ? "active" : "")
-              a.dropdown-toggle(href='/tasks', title="task listing", data-toggle="dropdown") Tasks
-              ul.dropdown-menu
-                li
-                  a(href="#") Active
-                li
-                  a(href="#") Archived
-          ul.nav.pull-right
-            if (req.isAuthenticated())
-              li
-                a(href="/users/"+req.user.id, title="Profile") Profile
-              li
-                a(href="/logout", title="logout") Logout
-            else
-              li
-                a(href="/login", title="Login") Login
+	.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
+		.navbar-inner
+			.container
+				.nav-collapse
+					ul.nav
+						li(class = title == 'List of Projects' ? "active" : "")
+							a(href='/projects', title="project listing") Projects
+
+						li(class = title == 'List of Documents' ? "active" : "")
+							a(href='/documents', title="document listing") Documents
+
+						li(class = title == 'List of Contacts' ? "active" : "")
+							a(href='/contacts', title="contact listing") Contacts
+
+						li.dropdown(class = title == 'List of Tasks' ? "active" : "")
+							a.dropdown-toggle(href='/tasks', title="task listing", data-toggle="dropdown") Tasks
+							ul.dropdown-menu
+								li
+									a(href="#") Active
+								li
+									a(href="#") Archived
+					ul.nav.pull-right
+						if (req.isAuthenticated())
+							li
+								a(href="/users/"+req.user.id, title="Profile") Profile
+							li
+								a(href="/logout", title="logout") Logout
+						else
+							li
+								a(href="/login", title="Login") Login

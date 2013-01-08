@@ -1,90 +1,90 @@
 extends ../layouts/default
 
 block main
-  h2 Active tasks
-  a.new(href='/tasks/new', title="new task") New task
+	h2 Active tasks
+	a.new(href='/tasks/new', title="new task") New task
     
 block content
-  div#filtres
-    form.form-inline
-      fieldset
-        legend Filters
-        label.control-label(for='projet', style = 'padding-right:5px;') Project :
-        select#projet.input-large(type='text', name="project_filter", placeholder='Select projects')
-          option(value = "") Select a project
-          each project in collections.projects
-            option(value = project.id, selected = project_filter == project._id) [#{project.number}] - #{project.title}
-        label.control-label(for='user', style = 'padding-left : 20px; padding-right:5px;') Assigned to : 
-        select#user.input-large(type='text', name="user_filter", placeholder='Choisir utilisateurs')
-          option(value = "") Select a user
-          each user in collections.users
-            option(value = user.id, selected = user_filter == user._id) #{user.name}
-        button.btn(type='submit', style = 'margin-left : 10px;') Filter
+	div#filtres
+		form.form-inline
+			fieldset
+				legend Filters
+				label.control-label(for='projet', style = 'padding-right:5px;') Project :
+				select#projet.input-large(type='text', name="project_filter", placeholder='Select projects')
+					option(value = "") Select a project
+					each project in collections.projects
+						option(value = project.id, selected = project_filter == project._id) [#{project.number}] - #{project.title}
+				label.control-label(for='user', style = 'padding-left : 20px; padding-right:5px;') Assigned to : 
+				select#user.input-large(type='text', name="user_filter", placeholder='Choisir utilisateurs')
+					option(value = "") Select a user
+					each user in collections.users
+						option(value = user.id, selected = user_filter == user._id) #{user.name}
+				button.btn(type='submit', style = 'margin-left : 10px;') Filter
 
-  legend Tasks
-  if (tasks.length > 0)
-    // Results
-    div(style = "padding-bottom : 10px")
-      i Showing #{tasks.length} results out of #{count}
-    
-    table.table.table-condensed.table-hover.small(style = 'border:1px solid #ccc;')
-      thead
-        tr.task-header
-          th 
-            a #
-          th(width = "170px") 
-            a Project
-          th.align-center(width = "1px") 
-            a %
-          th 
-            a Task
-          th(width = "80px")  
-            a Assigned to
-          th.align-center(width = "1px") 
-            a Priority
-          th.align-center(width = "70px") 
-            a Due date
-          th.align-center(width = "80px") Quick actions
-      tbody
-        each task in tasks
-          tr(class = task.isLate ? "error" : "")
-            td= task.number
-            td
-              a(href = '#', id = 'task-project-' + task.number, data-type='select', data-pk="1", data-url="/") [#{task.project.number}] - #{task.project.title}
-            td.align-center 
-              a(href = '#', id = 'task-completion-' + task.number, data-type='text', data-pk="1", data-url="/", data-emptytext = "0%")= task.completion +"%"
-            td 
-              a(href = '#', id = 'task-task-' + task.number, data-type='textarea', data-pk="1", data-url="/")= task.task
-            td 
-              a(href = '#', id = 'task-assignedto-' + task.number, data-type='select', data-pk="1", data-url="/")= task.assigned_to.name
-            td.align-center
-              if (task.priority == "Very high")
-                a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-circle-arrow-up
-              else if (task.priority == "High")
-                a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-arrow-up
-              else if (task.priority == "Normal")
-                a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-arrow-down
-              else if (task.priority == "Low")
-                a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-circle-arrow-down
-            td.align-center
-              a(href = '#', id = 'task-duedate-' + task.number, class = task.isLate ? "red" : "", data-type='date', data-pk=task.id, data-url="/")= formatDate(task.due_date, "%b %d, %Y at %i:%M %p")
-            td.align-center
-              a(href = '#', style = 'margin : 0px 1px;', rel = "tooltip", title = "Mark as finished")
-                span.img.icon-check
-              a(href = '/tasks/' + task._id, style = 'margin : 0px 1px;', rel = "tooltip", title = "View details")
-                span.img.icon-search
-              a(href = '/tasks/' + task._id + '/edit', style = 'margin : 0px 1px;', rel = "tooltip", title = "Edit")
-                span.img.icon-pencil
-              a(href = '#', style = 'margin : 0px 1px;', rel = "tooltip", title = "Delete")
-                span.img.icon-remove            
-              a(href = '#', style = 'margin : 0px 1px;', rel = "tooltip", title = "View worklogs (" + task.worklogs.length +")")
-                span.img.icon-comment    
-              
-    if (pages > 1)
-      .pagination.align-center
-        ul
-          != createPagination(pages, page)
-  else
-    div
-      i No data found
-          
+	legend Tasks
+	if (tasks.length > 0)
+		// Results
+		div(style = "padding-bottom : 10px")
+			i Showing #{tasks.length} results out of #{count}
+
+		table.table.table-condensed.table-hover.small(style = 'border:1px solid #ccc;')
+			thead
+				tr.task-header
+					th 
+						a #
+					th(width = "170px") 
+						a Project
+					th.align-center(width = "1px") 
+						a %
+					th 
+						a Task
+					th(width = "80px")  
+						a Assigned to
+					th.align-center(width = "1px") 
+						a Priority
+					th.align-center(width = "70px") 
+						a Due date
+					th.align-center(width = "80px") Quick actions
+			tbody
+				each task in tasks
+					tr(class = task.isLate ? "error" : "")
+						td= task.number
+						td
+							a(href = '#', id = 'task-project-' + task.number, data-type='select', data-pk="1", data-url="/") [#{task.project.number}] - #{task.project.title}
+						td.align-center 
+							a(href = '#', id = 'task-completion-' + task.number, data-type='text', data-pk="1", data-url="/", data-emptytext = "0%")= task.completion +"%"
+						td 
+							a(href = '#', id = 'task-task-' + task.number, data-type='textarea', data-pk="1", data-url="/")= task.task
+						td 
+							a(href = '#', id = 'task-assignedto-' + task.number, data-type='select', data-pk="1", data-url="/")= task.assigned_to.name
+						td.align-center
+							case task.priority
+								when "Very high"
+									a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-circle-arrow-up
+								when "High"
+									a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-arrow-up
+								when "Normal"
+									a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-arrow-down
+								when "Low"
+									a(href = '#', id = 'task-priority-' + task.number, data-type='select', data-pk="1", data-url="/").icon-circle-arrow-down
+						td.align-center
+							a(href = '#', id = 'task-duedate-' + task.number, class = task.isLate ? "red" : "", data-type='date', data-pk=task.id, data-url="/")= formatDate(task.due_date, "%b %d, %Y at %i:%M %p")
+						td.align-center
+							a(href = '#', style = 'margin : 0px 1px;', rel = "tooltip", title = "Mark as finished")
+								span.img.icon-check
+							a(href = '/tasks/' + task._id, style = 'margin : 0px 1px;', rel = "tooltip", title = "View details")
+								span.img.icon-search
+							a(href = '/tasks/' + task._id + '/edit', style = 'margin : 0px 1px;', rel = "tooltip", title = "Edit")
+								span.img.icon-pencil
+							a(href = '#', style = 'margin : 0px 1px;', rel = "tooltip", title = "Delete")
+								span.img.icon-remove            
+							a(href = '#', style = 'margin : 0px 1px;', rel = "tooltip", title = "View worklogs (" + task.worklogs.length +")")
+								span.img.icon-comment    
+
+		if (pages > 1)
+			.pagination.align-center
+				ul
+					!= createPagination(pages, page)
+	else
+		div
+			i No data found

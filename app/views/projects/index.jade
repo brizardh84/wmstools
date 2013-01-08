@@ -1,44 +1,45 @@
 extends ../layouts/default
 
 block main
-  h2 Projects 
-  a.new(href='/projects/new', title="new project") Create New
+	h2 Projects 
+	a.new(href='/projects/new', title="new project") Create New
     
 block content
-  if (pages > 1)
-    .pagination.align-center
-      ul
-        != createPagination(pages, page)
+	if (pages > 1)
+		.pagination.align-center
+			ul
+				!= createPagination(pages, page)
   
-  // Results
-  div
-    i Showing #{projects.length} results out of #{count}
-    
-  each project in projects
-    .project.roundedbox
-      a.title(href='/projects/'+project._id, title=project.title) [#{project.number}] - #{project.title}
-      p=project.description
-           
-      .extra
-        if (project.contacts.length > 0)
-          p.contacts
-            span Contacts :&nbsp;
-            each contact in project.contacts
-              a.contact(href="mailto:"+contact.email)
-                i.icon-contacts
-                |  #{contact.firstname} #{contact.lastname}
-        if (project.tags.length > 0)
-          span.tags
-            span Tags :&nbsp;
-            each tag in project.tags.split(',')
-              a.tag(href="/tags/"+tag)
-                i.icon-tags
-                |  #{tag}
-        else
-          span.tags
-            span Tags : None
+	// Results
+	div
+		i Showing #{projects.length} results out of #{count}
 
-  if (pages > 1)
-    .pagination.align-center
-      ul
-        != createPagination(pages, page)
+	each project in projects
+		.project.roundedbox
+			a.title(href='/projects/'+project._id, title=project.title) [#{project.number}] - #{project.title}
+			p=project.description
+
+			.extra
+				if (project.contacts.length > 0)
+					p.contacts
+						span Contacts :&nbsp;
+						each contact in project.contacts
+							a.contact(href="mailto:"+contact.email)
+								i.icon-contacts
+								|  #{contact.firstname} #{contact.lastname}
+				if (project.tags.length > 0)
+					span.tags
+					span Tags :&nbsp;
+						each tag in project.tags.split(',')
+							a.tag(href="/tags/"+tag)
+								i.icon-tags
+								|  #{tag}
+				else
+					span.tags
+					span Tags : None
+
+	if (pages > 1)
+		.pagination.align-center
+			ul
+				!= createPagination(pages, page)
+				
