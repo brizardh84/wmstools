@@ -123,6 +123,8 @@ module.exports = function (app, passport, auth) {
 		Task
 			.findOne({ _id : id })
 			.populate('assigned_to')
+			.populate('created_by')
+			.populate('modified_by')
 			.populate('worklogs', null, null, {sort : [['date', 1]]})
 			.exec(function (err, task) {
 				if (err) {

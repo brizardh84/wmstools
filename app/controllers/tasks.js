@@ -111,10 +111,17 @@ exports.quicksave = function(req, res) {
 
 // View a task
 exports.show = function(req, res){
-	res.render('tasks/show', {
-		worklogs : req.worklogs,
-		task: req.task
-	})
+	Project
+		.findOne({ _id : req.task.project })
+		.exec(function(err, project) {
+			
+			res.render('tasks/show', {
+				worklogs : req.worklogs,
+				project : project,
+				task: req.task
+			})
+		})
+
 }
 
 // Delete a task

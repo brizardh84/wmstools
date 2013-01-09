@@ -10,7 +10,10 @@ if (worklog && worklog.created_by)
 	.worklog(class = clsWorklog)    
 		b #{worklog.type} 
 		span(style = "font-size : 11px;") by 
-		a(href="/users/"+worklog.author._id) #{worklog.author.name} 
+		a(href="/users/"+worklog.author._id) 
+			img.icon-user 
+			= worklog.author.name
+			&nbsp;
 		span.date(style = 'color : #666') on #{formatDate(worklog.date, "%b %d, %Y at %I:%M %p")}    
 
 		// avec != on peut interpréter les balises HTML, sinon ça affiche normalement

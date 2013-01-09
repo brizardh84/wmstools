@@ -1,16 +1,41 @@
 extends ../layouts/default
 
 block main
-	h2.left= task.task
+	h3.align-left [#{project.number}] - #{project.title}
 
 block content
 	.row
 		.span9
-			p=task.description
-			p.author
-				span Assigned to :&nbsp;
-				a(href="/users/"+task.assigned_to._id)=task.assigned_to.name
-			.date= formatDate(task.created_date, "%b %d, %Y at %I:%M %p")
+			p.task-title= task.task
+			dl
+				dt Status
+				dd ----------Code me---------------
+			dl
+				dt Description
+				dd= task.description
+			dl
+				dt Priority
+				dd= task.priority
+			dl
+				dt Completion
+				dd= task.completion + "%" 
+			dl
+				dt Assigned to
+				dd
+					a(href="/users/"+task.assigned_to._id)
+						img.icon-user 
+						&nbsp;
+						= task.assigned_to.name
+			dl
+				dt Due date
+				dd= formatDate(task.due_date, "%b %d, %Y at %I:%M %p")
+			p
+				if (task.created_by)
+					i Created by #{task.created_by.name} on #{formatDate(task.created_date, "%b %d, %Y at %I:%M %p")}
+				if (task.modified_by)
+					br
+					i Last modified by #{task.modified_by.name} on #{formatDate(task.modified_date, "%b %d, %Y at %I:%M %p")}
+
 	p
 		br
 		form.align-center.form-inline.confirm(action="/tasks/"+task.id, method="post")
@@ -18,10 +43,12 @@ block content
 			&nbsp;&nbsp;
 			input(type="hidden", name="_method", value="DELETE")
 			button.btn.btn-danger(type="submit") Delete
-	p
-		br
-		h2 Worklogs (#{task.worklogs.length})
-		each worklog in task.worklogs
-			include ../worklogs/worklog
-		br
-		include ../worklogs/form
+	hr
+	.row
+		.span9
+			br
+			h2 Worklogs (#{task.worklogs.length})
+			each worklog in task.worklogs
+				include ../worklogs/worklog
+			br
+			include ../worklogs/form
