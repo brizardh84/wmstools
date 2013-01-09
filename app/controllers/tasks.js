@@ -128,7 +128,7 @@ exports.destroy = function(req, res){
 
 // Listing of tasks
 exports.index = function(req, res){
-	var perPage = 50, 
+	var perPage = 100, 
 		page = req.param('page') > 0 ? req.param('page') : 0
 
 	var project_filter = req.param('project_filter') || "";

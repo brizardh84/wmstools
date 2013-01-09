@@ -61,7 +61,7 @@ exports.show = function (req, res) {
 	});
 }
 
-// get list
+// get users list for combobox listing with key-value mapping
 exports.getAll = function(req, res) {
 	User
 		.find()

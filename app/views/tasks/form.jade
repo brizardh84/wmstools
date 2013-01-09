@@ -30,12 +30,12 @@ block content
 					label.control-label(for='task') Task
 					.controls
 						input.input-xxlarge(type='text', name="task", value=task.task, placeholder='Enter the title')  
-
+												
 				// Description    
 				.control-group
 					label.control-label(for='description') Description
 					.controls
-						input#description.input-xxlarge(type='text', name="description", value=task.description, rows = 6, placeholder='Enter the description')
+						textarea#description.input-xxlarge(type='text', name="description", rows = 6, placeholder='Enter the description')=task.description
 
 				// Project    
 				.control-group

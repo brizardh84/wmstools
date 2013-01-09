@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 	dateMask = 'YYYY-MM-DD';
 
 var TaskSchema = new Schema({
-	number : Number,
+	number : {type: Number},
 	project: {type : Schema.ObjectId, ref : 'Project'}, 
 	completion : {type: Number, default : 0, min : 0, max : 100},
 	task : {type: String, trim : true},
