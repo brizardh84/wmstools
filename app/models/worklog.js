@@ -21,4 +21,14 @@ var WorklogSchema = new Schema({
 	modified_by : { type:Schema.ObjectId, ref : 'User'}
 });
 
+WorklogSchema.path('date').validate(function (date) {
+	return date !== null
+}, 'Date cannot be blank');
+
+WorklogSchema.path('body').validate(function (body) {
+	return body.length > 0
+}, 'Worklog cannot be blank');
+
+
+
 mongoose.model('Worklog', WorklogSchema);

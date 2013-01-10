@@ -1,54 +1,73 @@
 extends ../layouts/default
 
-block main
-	h3.align-left [#{project.number}] - #{project.title}
-
 block content
 	.row
-		.span9
-			p.task-title= task.task
-			dl
-				dt Status
-				dd ----------Code me---------------
-			dl
-				dt Description
-				dd= task.description
-			dl
-				dt Priority
-				dd= task.priority
-			dl
-				dt Completion
-				dd= task.completion + "%" 
-			dl
-				dt Assigned to
-				dd
-					a(href="/users/"+task.assigned_to._id)
-						img.icon-user 
-						&nbsp;
-						= task.assigned_to.name
-			dl
-				dt Due date
-				dd= formatDate(task.due_date, "%b %d, %Y at %I:%M %p")
-			p
-				if (task.created_by)
-					i Created by #{task.created_by.name} on #{formatDate(task.created_date, "%b %d, %Y at %I:%M %p")}
-				if (task.modified_by)
-					br
-					i Last modified by #{task.modified_by.name} on #{formatDate(task.modified_date, "%b %d, %Y at %I:%M %p")}
-
-	p
-		br
-		form.align-center.form-inline.confirm(action="/tasks/"+task.id, method="post")
+		.span8.task-title #{task.task}
+		.align-right
 			a.btn(href='/tasks/'+task._id+'/edit', title="edit") Edit
 			&nbsp;&nbsp;
 			input(type="hidden", name="_method", value="DELETE")
 			button.btn.btn-danger(type="submit") Delete
-	hr
 	.row
-		.span9
-			br
-			h2 Worklogs (#{task.worklogs.length})
-			each worklog in task.worklogs
-				include ../worklogs/worklog
-			br
-			include ../worklogs/form
+		.span8
+			div.task-container
+				div.task-header Task information
+				div.task-content
+					dl
+						dt Project
+						dd [#{task.project.number}] - #{task.project.title}
+					dl
+						dt Status
+						dd ----------Code me---------------
+					dl
+						dt Description
+						dd= task.description
+					dl
+						dt Priority
+						dd
+							- var clsPriority = "";
+							case task.priority
+								when "Very high"
+									clsPriority = "icon-circle-arrow-up";
+								when "High"
+									clsPriority = "icon-arrow-up";
+								when "Normal"
+									clsPriority = "icon-arrow-down";
+								when "Low"
+									clsPriority = "icon-circle-arrow-down";
+							i(class = clsPriority)
+							&nbsp;
+							= task.priority
+					dl
+						dt Completion
+						dd 
+							div.progress.background-completion
+								div.bar.bar-success(style = "padding-left : 5px; color : #222; width:" + task.completion + "%")= task.completion +"%"
+					dl
+						dt Assigned to
+						dd
+							if (task.assigned_to)
+								a(href="/users/"+task.assigned_to._id)
+									i.icon-user 
+									&nbsp;
+									= task.assigned_to.name
+							else
+								span N/A
+					dl
+						dt Due date
+						dd= (task.due_date ? formatDate(task.due_date, "%b %d, %Y at %I:%M %p") : "None")
+					div.creation-modification
+						if (task.created_by)
+							i Created by #{task.created_by.name} on #{formatDate(task.created_date, "%b %d, %Y at %I:%M %p")}
+						if (task.modified_by)
+							br
+							i Last modified by #{task.modified_by.name} on #{formatDate(task.modified_date, "%b %d, %Y at %I:%M %p")}
+						
+		.span4
+			div.worklogs-container
+				div.worklogs-header Worklogs (#{task.worklogs.length})
+				
+				div.worklogs-content									
+					each worklog in task.worklogs
+						include ../worklogs/worklog
+					include ../worklogs/form

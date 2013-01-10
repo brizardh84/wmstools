@@ -11,7 +11,6 @@ if (worklog && worklog.created_by)
 		b #{worklog.type} 
 		span(style = "font-size : 11px;") by 
 		a(href="/users/"+worklog.author._id) 
-			img.icon-user 
 			= worklog.author.name
 			&nbsp;
 		span.date(style = 'color : #666') on #{formatDate(worklog.date, "%b %d, %Y at %I:%M %p")}    

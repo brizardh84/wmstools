@@ -38,11 +38,16 @@ body {
 
 .main-head {
   text-align: center;
-  padding: 20px 0px;
+  padding: 10px 0px;
 }
 
 .btn {
   outline: none !important;
+}
+
+.creation-modification {
+	font-size : 85%;
+	padding-bottom : 10px;
 }
 
 /* Alignment */
@@ -164,8 +169,24 @@ div.contactsinput div { display:block; float: left; }
 
 
 /* Tasks */
+.task-container {
+	border : 1px solid #999;
+	background-color : #EFEFEF;
+	border-radius : 6px;
+}
+
 .task-header {
+	font-size : 120%;
+	font-weight : bold;
+	text-align : center;
+	padding : 3px 0px;
+	border-radius : 6px 6px 0px 0px;
+	border-bottom : 1px solid #999;
 	background-color : #DBECFC;
+}
+
+.task-content {
+	padding : 0px 10px;
 }
 
 .completed {
@@ -173,36 +194,58 @@ div.contactsinput div { display:block; float: left; }
 }
 
 .task-title {
-	font-size : 16px;
+	font-size : 140%;
 	font-weight : bold;
-	background-color : #EFEFEF;
-	padding : 10px;
-	border : 1px solid #CCC;
-	border-radius : 6px;
+	padding : 10px 3px 20px 3px;
+	text-align : left;
+}
+
+.background-completion {
+	background-image: linear-gradient(to bottom, #CEFFD7, #FFF) !important; 
+	width : 200px;
 }
 
 /* Worklogs */
-.worklog {
-	padding : 10px;
+.worklogs-container {
 	border : 1px solid #999;
+	background-color : #EFEFEF;
 	border-radius : 6px;
-	margin : 5px 0px;
 }
 
-.worklog-update {
+.worklogs-content {
+	padding : 5px;
+}
+
+.worklogs-header {
+	font-size : 120%;
+	font-weight : bold;
+	text-align : center;
+	padding : 3px 0px;
+	border-radius : 6px 6px 0px 0px;
+	border-bottom : 1px solid #999;
 	background-color : #DBECFC;
 }
 
+.worklog {
+	padding : 0px 3px;
+	margin : 2px 0px;
+	font-size : 85%;
+}
+
+.worklog-update {
+	/*background-color : #DBECFC;*/
+}
+
 .worklog-inquiry {
-	background-color : #EAC0C3;
+	/*background-color : #EAC0C3;*/
 }
 
 .worklog-followup {
-	background-color : #C0EACE;
+	/*background-color : #C0EACE;*/
 }
 
 .worklog-body {
-	padding-left : 20px;
+	padding-left : 10px;
 }
 
 /* DataTables */

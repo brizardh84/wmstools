@@ -113,15 +113,17 @@ module.exports = function (app, passport, auth) {
 	var tasks = require('../app/controllers/tasks');
 	app.get('/tasks/', auth.requiresLogin, tasks.index);
 	app.get('/tasks/new', auth.requiresLogin, tasks.new);
-	app.post('/tasks', auth.requiresLogin, tasks.create);
+	app.post('/tasks', auth.requiresLogin, tasks.save);
 	app.get('/tasks/:taskId', tasks.show);
 	app.get('/tasks/:taskId/edit', auth.requiresLogin, tasks.edit);
-	app.put('/tasks/:taskId', auth.requiresLogin, tasks.update);
+	app.put('/tasks/:taskId', auth.requiresLogin, tasks.save);
 	app.del('/tasks/:taskId', auth.requiresLogin, tasks.destroy);
 	app.post('/tasks/quicksave', auth.requiresLogin, tasks.quicksave)
+	// Si on a le param de TaskId, on veut nécessairement avoir de l'information sur la tâche et c'est pourquoi on populate les champs de références
 	app.param('taskId', function(req, res, next, id){
 		Task
 			.findOne({ _id : id })
+			.populate('project')
 			.populate('assigned_to')
 			.populate('created_by')
 			.populate('modified_by')
@@ -136,7 +138,7 @@ module.exports = function (app, passport, auth) {
  				req.task = task; 				 			
 				
 				// On veut ajouter l'information sur le user du commentaire
- 				var populateWorklogs = function (worklog, cb) {
+ 				var populateWorklogAuthor = function (worklog, cb) {
 	 				User
 						.findOne({ _id: worklog.created_by })
 	  					.select('name')
@@ -150,7 +152,7 @@ module.exports = function (app, passport, auth) {
         		}
 
 				if (task.worklogs.length) {
-					async.map(req.task.worklogs, populateWorklogs, function (err, results) {
+					async.map(task.worklogs, populateWorklogAuthor, function (err, results) {
 						next(err);
 					})
 				} else {

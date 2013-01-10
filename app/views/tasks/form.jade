@@ -2,6 +2,7 @@ extends ../layouts/default
 
 block content
 	- var action = '/tasks'
+
 	if (!task.isNew)
 		- action += '/'+task.id
 
@@ -27,7 +28,7 @@ block content
 
 				// Task   
 				.control-group
-					label.control-label(for='task') Task
+					label.control-label(for='task') Task (*)
 					.controls
 						input.input-xxlarge(type='text', name="task", value=task.task, placeholder='Enter the title')  
 												
@@ -36,15 +37,21 @@ block content
 					label.control-label(for='description') Description
 					.controls
 						textarea#description.input-xxlarge(type='text', name="description", rows = 6, placeholder='Enter the description')=task.description
-
+			
 				// Project    
 				.control-group
-					label.control-label(for='project') Project
+					label.control-label(for='project') Project (*)
 					.controls
-						select.input-xlarge(type='text', name="project", placeholder='Select project')
+						select.input-xlarge(name="project", placeholder='Select project')
 							option
 							each project in projects
-								option(value = project.id, selected = project.id == task.project) [#{project.number}] - #{project.title}
+								if (task.isNew) 
+									option(value = project.id, selected = project.id == task.project) [#{project.number}] - #{project.title}
+								else 
+									if (task.project)
+										option(value = project.id, selected = project.id == task.project.id) [#{project.number}] - #{project.title}
+									else
+										option(value = project.id) [#{project.number}] - #{project.title}
 
 				// Completion                
 				if (!task.isNew)
@@ -52,24 +59,21 @@ block content
 						label.control-label(for='completion') Completion
 						.controls
 							input.input-small(type='number', name="completion", value=task.completion)
-
-				// Assigned To        
-				if (!task.isNew)    
-					.control-group
-						label.control-label(for='assigned_to') Assigned to
-						.controls
-							select.input-xlarge(name="assigned_to", value=task.assigned_to.id)
-								option
-								each user in users
-									option(value = user.id, selected = (user.id == task.assigned_to.id)) #{user.name}
-				else
-					.control-group
-						label.control-label(for='assigned_to') Assigned to
-						.controls
-							select.input-xlarge(name="assigned_to")
-								option
-								each user in users
-									option(value = user.id) #{user.name}  
+			
+				// Assigned To          
+				.control-group
+					label.control-label(for='assigned_to') Assigned to
+					.controls
+						select.input-xlarge(name="assigned_to", placeholder='Select a user')
+							option
+							each user in users
+								if (task.isNew) 
+									option(value = user.id, selected = user.id == task.assigned_to) #{user.name}
+								else 
+									if (task.assigned_to)
+										option(value = user.id, selected = user.id == task.assigned_to.id) #{user.name}
+									else
+										option(value = user.id) #{user.name}
 
 				// Priority                
 				.control-group

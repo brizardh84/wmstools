@@ -25,30 +25,6 @@ exports.new = function(req, res){
 		});
 }
 
-// Create a task
-exports.create = function (req, res) {
-	var task = new Task(req.body);
-
-	// Auto-update de la création
-	task.created_date = new Date;
-	task.created_by = req.user;
-	
-	Task.count().exec(function (err, count) {
-  		task.number = count + 1;
-  		task.save(function(err){
-			if (err) {
-				res.render('tasks/new', {
-					title: 'New Task', 
-					task: task, 
-					errors: err.errors
-				});
-			} else {
-				res.redirect('/tasks');
-			}
-		});
-	});
-}
-
 // Edit a task
 exports.edit = function (req, res) {
 	Project
@@ -60,7 +36,7 @@ exports.edit = function (req, res) {
 				.sort({'name': 1})
 				.exec(function(err, users) {
 					res.render('tasks/edit', {
-						title: 'New Task', 
+						title: 'Edit Task', 
 						task: req.task,
 						projects: projects,
 						users : users
@@ -69,27 +45,62 @@ exports.edit = function (req, res) {
 		});
 }
 
-// Update task
-exports.update = function(req, res){
-	var task = req.task
-
-	task = _.extend(task, req.body)
+// Save task
+exports.save = function(req, res){
+	var isNew = req.method == "POST"; // POST si create, PUT si update
 	
-	// Auto-update de la modification
-	task.modified_date = new Date;
-	task.modified_by = req.user;
+	// On arrive pas à traiter chaîne vide et cela fait planter le casting vers un ObjectId selon la définition du Schema. Il faut forcer un null
+	if (req.body.project === '')
+		req.body.project = null;
+		
+	// On arrive pas à traiter chaîne vide et cela fait planter le casting vers un ObjectId selon la définition du Schema. Il faut forcer un null
+	if (req.body.assigned_to === '')
+		req.body.assigned_to = null;
 	
-	task.save(function(err, task) {
-		if (err) {
-			res.render('tasks/edit', {
- 				title: 'Edit Task', 
- 				task: task, 
- 				errors: err.errors
-			})
-		} else {
-			res.redirect('/tasks')
-		}
-	})
+	if (isNew) {
+		var task = new Task(req.body);
+			
+		// Auto-update de la modification
+		task.created_date = new Date;
+		task.created_by = req.user;
+	} else {
+		var task = req.task;
+		task = _.extend(task, req.body);
+		
+		// Auto-update de la modification
+		task.modified_date = new Date;
+		task.modified_by = req.user;
+	}
+	
+	Task.count().exec(function (err, count) {
+  		// On a besoin de faire le count pour avoir le prochain NUMBER de la tâche
+  		if (task.isNew) task.number = count + 1;
+  		
+  		task.save(function(err){
+			if (err) {
+				// on recommence le processus avec les données déjà soumises
+				Project
+					.find()
+					.sort({'number': 1})
+					.exec(function(error, projects) {
+						User
+							.find()
+							.sort({'name': 1})
+							.exec(function(error, users) {
+								res.render('tasks/new', {
+									title: task.isNew ? 'New Task' : 'Edit Task', 
+									task: task, 
+									projects : projects,
+									users : users,
+									errors: err.errors
+								});
+							})
+					});
+			} else {
+				res.redirect('/tasks');
+			}
+		});
+	});
 }
 
 // Sauvgarder les tâches avec le quick-editing
@@ -111,17 +122,10 @@ exports.quicksave = function(req, res) {
 
 // View a task
 exports.show = function(req, res){
-	Project
-		.findOne({ _id : req.task.project })
-		.exec(function(err, project) {
-			
-			res.render('tasks/show', {
-				worklogs : req.worklogs,
-				project : project,
-				task: req.task
-			})
-		})
-
+	res.render('tasks/show', {
+		worklogs : req.worklogs,
+		task: req.task
+	})
 }
 
 // Delete a task
