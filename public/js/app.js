@@ -23,6 +23,8 @@ $(document).ready(function () {
 		});
 	});
 
+	$('a[rel=tooltip]').tooltip();
+
 	$('#tags').tagsInput({
 		'defaultText' : 'Add tag',
 		'height':'60px',

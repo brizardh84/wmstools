@@ -4,24 +4,22 @@ block content
 	.row
 		.span8.task-title #{task.task}
 		.align-right
-			a.btn(href='/tasks/'+task._id+'/edit', title="edit") Edit
+			a.btn.btn-small(href='/tasks/'+task._id+'/edit', title="edit") Edit
 			&nbsp;&nbsp;
 			input(type="hidden", name="_method", value="DELETE")
-			button.btn.btn-danger(type="submit") Delete
+			button.btn.btn-danger.btn-small(type="submit") Delete
 	.row
 		.span8
-			div.task-container
-				div.task-header Task information
-				div.task-content
+			div#details-module.section.toggle-wrap(data-toggle = "collapse", data-target="#details-section-collapsible")
+				div.section-header
+					div.toggle-title Task Information
+				div#details-section-collapsible.section-content.collapse.in
 					dl
 						dt Project
 						dd [#{task.project.number}] - #{task.project.title}
 					dl
 						dt Status
 						dd ----------Code me---------------
-					dl
-						dt Description
-						dd= task.description
 					dl
 						dt Priority
 						dd
@@ -55,19 +53,29 @@ block content
 								span N/A
 					dl
 						dt Due date
-						dd= (task.due_date ? formatDate(task.due_date, "%b %d, %Y at %I:%M %p") : "None")
-					div.creation-modification
-						if (task.created_by)
-							i Created by #{task.created_by.name} on #{formatDate(task.created_date, "%b %d, %Y at %I:%M %p")}
-						if (task.modified_by)
-							br
-							i Last modified by #{task.modified_by.name} on #{formatDate(task.modified_date, "%b %d, %Y at %I:%M %p")}
-						
+						dd= (task.due_date ? formatDate(task.due_date, "%b %d, %Y at %I:%M %p") : "None")			
+			div#description-module.section.toggle-wrap(data-toggle = "collapse", data-target="#description-module-collapsible")
+				div.section-header
+					div.toggle-title Description
+				div#description-module-collapsible.section-content.collapse.in
+					div= task.description ? task.description : "N/A"
+			
+			hr		
+			div.creation-modification
+				if (task.created_by)
+					i Created by #{task.created_by.name} on #{formatDate(task.created_date, "%b %d, %Y at %I:%M %p")}
+				if (task.modified_by)
+					br
+					i Last modified by #{task.modified_by.name} on #{formatDate(task.modified_date, "%b %d, %Y at %I:%M %p")}	
 		.span4
 			div.worklogs-container
 				div.worklogs-header Worklogs (#{task.worklogs.length})
 				
 				div.worklogs-content									
-					each worklog in task.worklogs
-						include ../worklogs/worklog
+					if (task.worklogs.length > 0)
+						each worklog in task.worklogs
+							include ../worklogs/worklog
+					else
+						div(style = "margin : 10px;") 
+							i No worklogs yet
 					include ../worklogs/form

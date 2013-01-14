@@ -1,25 +1,26 @@
-h4(style = "padding-top : 10px") Add Worklog
-if (typeof errors !== 'undefined')
-	.fade.in.alert.alert-block.alert-error
-		a.close(data-dismiss="alert", href="javascript:void(0)") x
-		ul
-			each error in errors
-				li= error.type
-				
-form.form-vertical.align-center(method="post", action="/tasks/#{task._id}/worklogs")
-	.control-group.align-left
-		label.control-label(for='date') Work type (*)
-		.controls
-			select.input-medium(type='text', rows="6", name="type", placeholder='Select type')
-				option(value = "Update") Status Update
-				option(value = "Inquiry") Inquiry
-				option(value = "Follow-up") Follow-up
-	.control-group.align-left
-		label.control-label(for='date') Date (*)
-		.controls
-			input.input-small(type = 'text', name="date", data-date-format="mm/dd/yyyy", id = 'datepicker', placeholder='Pick a date')
-	.control-group.align-left
-		label.control-label(for='date') What was done? (*)
-		.controls
-			textarea.input-xlarge(type='text', rows="6", name="body", placeholder='Write down all relevant information regarding the work you did on this task')
-	button.btn.btn-primary(type='submit') Add worklog
+.worklogs-add-header Add Worklog
+.worklogs-add-container
+	if (typeof errors !== 'undefined')
+		.fade.in.alert.alert-block.alert-error
+			a.close(data-dismiss="alert", href="javascript:void(0)") x
+			ul
+				each error in errors
+					li= error.type
+					
+	form.form-vertical.align-center(method="post", action="/tasks/#{task._id}/worklogs")
+		.control-group.align-left
+			label.control-label(for='type') Work type (*)
+			.controls
+				select#type.input-medium(type='text', rows="6", name="type", placeholder='Select type')
+					option(value = "Update") Status Update
+					option(value = "Inquiry") Inquiry
+					option(value = "Follow-up") Follow-up
+		.control-group.align-left
+			label.control-label(for='date') Date (*)
+			.controls
+				input#date.input-small(type = 'text', name="date", data-date-format="mm/dd/yyyy", id = 'datepicker', placeholder='Pick a date')
+		.control-group.align-left
+			label.control-label(for='what-was-done') What was done? (*)
+			.controls
+				textarea#what-was-done.input-xlarge(type='text', rows="4", name="body", placeholder='Write down all relevant information regarding the work you did on this task')
+		button.btn.btn-primary(type='submit') Add worklog

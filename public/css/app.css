@@ -17,6 +17,52 @@ body {
   color: #888;
 }
 
+.section:after {
+	clear : both;
+	content : "";
+	display : block;
+	height : 0;
+	visibility : hidden;
+}
+
+.section:first-child {
+	margin-top : 0;
+}
+
+.section {
+	-moz-box-sizing : border-box;
+	margin : 16px 0px 0px 0px;
+	padding : 0px;
+	position : relative;
+	width : 100%;
+}
+
+.section > .section-header {
+	display : block;
+	position : relative;
+}
+
+.section-header {
+	background : url("../img/mod_header_bg.png") repeat-x scroll left center transparent;
+	margin : 0;
+	padding : 0;
+}
+
+.section.toggle-wrap > .section-header .toggle-title {
+	background : url("../img/icon_blockexpanded.png") no-repeat scroll 0 8px #FFFFFF;
+	cursor : pointer;
+	padding-left : 16px;
+}
+
+.toggle-title {
+	color : #326CA6;
+	cursor : pointer;
+	font-size : 19px;
+	display : inline;
+	margin : 0;
+	padding-right : 8px;
+}
+
 .title {
   padding: 5px 0 15px 0;
   display: block;
@@ -46,8 +92,7 @@ body {
 }
 
 .creation-modification {
-	font-size : 85%;
-	padding-bottom : 10px;
+	font-size : 11px;
 }
 
 /* Alignment */
@@ -194,10 +239,11 @@ div.contactsinput div { display:block; float: left; }
 }
 
 .task-title {
-	font-size : 140%;
+	font-size : 22px;
 	font-weight : bold;
-	padding : 10px 3px 20px 3px;
+	padding : 10px 3px 25px 3px;
 	text-align : left;
+	font-family : verdana;
 }
 
 .background-completion {
@@ -212,8 +258,19 @@ div.contactsinput div { display:block; float: left; }
 	border-radius : 6px;
 }
 
-.worklogs-content {
+.worklogs-add-container {
 	padding : 5px;
+}
+
+.worklogs-add-header {
+	font-size : 120%;
+	font-weight : bold;
+	text-align : center;
+	border-top : 1px solid #999;
+	border-bottom : 1px solid #999;
+	margin : 10px 0px 0px 0px;
+	padding : 3px 0px;
+	background-color : #DBECFC;
 }
 
 .worklogs-header {
@@ -227,21 +284,21 @@ div.contactsinput div { display:block; float: left; }
 }
 
 .worklog {
-	padding : 0px 3px;
-	margin : 2px 0px;
+	padding : 2px 5px;
 	font-size : 85%;
+	border-bottom : 1px solid #999;
 }
 
 .worklog-update {
-	/*background-color : #DBECFC;*/
+	background-color : #DFF0D8;
 }
 
 .worklog-inquiry {
-	/*background-color : #EAC0C3;*/
+	background-color : #F2DEDE;
 }
 
 .worklog-followup {
-	/*background-color : #C0EACE;*/
+	background-color : #FCF8E3;
 }
 
 .worklog-body {
