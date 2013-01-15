@@ -41,7 +41,7 @@ module.exports = function (app, passport, auth) {
 	app.get('/projects/:projectId/edit', auth.requiresLogin, projects.edit);
 	app.get('/projects/generate_preproposition/:projectId', auth.requiresLogin, projects.generate_preproposition);
 	app.put('/projects/:projectId', auth.requiresLogin, projects.update);
-	app.del('/projects/:projectId', auth.requiresLogin, aprojects.destroy);
+	app.del('/projects/:projectId', auth.requiresLogin, projects.destroy);
 	app.param('projectId', function(req, res, next, id){
 		Project
 			.findOne({ _id : id })
