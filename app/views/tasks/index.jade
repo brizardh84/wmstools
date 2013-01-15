@@ -73,7 +73,7 @@ block content
 									span.img.icon-search
 								a(href = '/tasks/' + task._id + '/edit', style = 'margin : 0px 1px;', rel = "tooltip", title = "Edit")
 									span.img.icon-pencil
-								a.confirm(href = '#', style = 'margin : 0px 1px;', title = "Delete", rel = "tooltip")
+								a(href = '#', action = "delete", style = 'margin : 0px 1px;', title = "Delete", rel = "tooltip")
 									span.img.icon-remove            
 								a(href = '#myModal', style = 'margin : 0px 1px;', rel = "tooltip", title = "View worklogs (" + task.worklogs.length +")", data-toggle="modal")
 									span.img.icon-comment    
