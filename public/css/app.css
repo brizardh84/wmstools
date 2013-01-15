@@ -212,6 +212,11 @@ div.contactsinput div { display:block; float: left; }
 	padding-top : 10px;
 }
 
+/* permet d'avoir une largeur automatique pour les popover de contacts */
+.popover-contact {
+	width : auto;	
+}
+
 
 /* Tasks */
 .task-container {

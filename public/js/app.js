@@ -43,7 +43,11 @@ $(document).ready(function () {
 	
 	// CONTACTS POPUP
 	$("[rel=popover]")
-		.popover({ trigger: 'manual' })
+		.popover({ 
+			trigger: 'manual',
+			// ce qui est important ici c'est l'ajout de popover-contact comme classe, ça nous permet d'avoir la largeur automatique pour le popover avec width : auto;
+			template: '<div class="popover popover-contact"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+		})
 		.click(function(e){ 
 			if($(this).hasClass('pop')) {
 	            $(this)

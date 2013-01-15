@@ -38,10 +38,10 @@ module.exports = function (app, passport, auth) {
 	app.get('/projects/new', auth.requiresLogin, projects.new);
 	app.post('/projects', auth.requiresLogin, projects.create);
 	app.get('/projects/:projectId', auth.requiresLogin, projects.show);
-	app.get('/projects/:projectId/edit', auth.requiresLogin, auth.project.hasAuthorization, projects.edit);
-	app.get('/projects/generate_preproposition/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.generate_preproposition);
-	app.put('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.update);
-	app.del('/projects/:projectId', auth.requiresLogin, auth.project.hasAuthorization, projects.destroy);
+	app.get('/projects/:projectId/edit', auth.requiresLogin, projects.edit);
+	app.get('/projects/generate_preproposition/:projectId', auth.requiresLogin, projects.generate_preproposition);
+	app.put('/projects/:projectId', auth.requiresLogin, projects.update);
+	app.del('/projects/:projectId', auth.requiresLogin, aprojects.destroy);
 	app.param('projectId', function(req, res, next, id){
 		Project
 			.findOne({ _id : id })
