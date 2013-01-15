@@ -15,7 +15,7 @@ $(document).ready(function () {
 		e.preventDefault();
 		var self = this;
 		var msg = 'Are you sure?';
-		bootbox.confirm(msg, 'cancel', 'Yes! I am sure', function (action) {
+		bootbox.confirm(msg, 'Cancel', 'Yes', function (action) {
 			if (action) {
 				$(self).unbind('submit');
 				$(self).trigger('submit');
@@ -35,11 +35,18 @@ $(document).ready(function () {
 		toggle : false
 	});
 	
-	/*$('[id*="popover"]').popover({
-		trigger : 'click',
-		html : true,
-		animation : false
-	});*/
+	/* Documents */
+	$('a[action=delete]').click(function (e) {
+		e.preventDefault();
+		var self = this;
+		var msg = 'Are you sure?';
+		bootbox.confirm(msg, 'Cancel', 'Yes', function (action) {
+			if (action) {
+				alert("Delete me");
+			}
+		});
+	});
+
 	
 	// CONTACTS POPUP
 	$("[rel=popover]")
@@ -67,13 +74,15 @@ $(document).ready(function () {
 		
 		
 	// TABS section DOCUMENTS
-	$('#projecttabs a').click(function (e) {
+	$('#projecttabs a.tab').click(function (e) {
 		e.preventDefault();
 		
 		// On évite de charger le même tab à maintes reprises
 		if ($_GET["project"] !== $(this).attr('number')) 
 			window.location = "/documents?project=" + $(this).attr('number');
 	})
+	
+	// Tasks
 	
 	$('[id^=task-task]').editable({
 		success : function(response, newValue) {

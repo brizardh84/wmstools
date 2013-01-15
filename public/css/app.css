@@ -185,12 +185,11 @@ a.contact {
 
 
 /* Documents */
-.doc-section-header {
+.folder-section-header {
 	font-size : 14px;
 	font-weight : bold;
-	margin:18px 0 10px 0px;
+	margin:25px 0 0px 0px;
 	border:0;
-	border-bottom:1px solid #eee;
 }
 
 .doc-section-row {

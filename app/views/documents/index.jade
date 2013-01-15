@@ -2,31 +2,40 @@ extends ../layouts/default
 
 block main
 	h2 Documents 
-    
 block content
 	div.tabbable.tabs-left#projecttabs
 		ul.nav.nav-tabs
 			each project in projects
 				li(class = (project.number == selectedproject) ? 'active' : '')
-					a.ellipsistab(href = '#' + project.number, data-toggle = "tab", title = project.title, number = project.number) 
+					a.tab.ellipsistab(href = '#' + project.number, data-toggle = "tab", title = project.title, number = project.number) 
 						b= project.number
 						br 
 						i(style = 'color : #000')= project.title
 
-//
-		div.tab-content
+
+		div.tab-content						
 			if (files.length > 0) 
+				h4= selectedproject
 				each file in files
 					if (file.type == "dir")
-						div.doc-section-header
+						div.folder-section-header
+							i.icon-folder-open
+							&nbsp;
 							span= file.name 
 					else if (file.type == "file")
 						div.doc-section-row
-							table(border = 1) 
+							table.table.table-condensed
 								tr
+									td(width = 16)
+										i.icon-file
 									td
 										a(href = file.path, target = "_blank") #{file.name} 
-									td
-										span= file.stat.ctime
+									td.align-right(width = 90)
+										span #{formatDate(file.stat.ctime, "%b %d, %Y at %I:%M %p")}
+									td.align-right(width = 16)
+										a(href = '#', action = "delete", style = 'margin : 0px 1px;', title = "Delete", rel = "tooltip",)
+											span.img.icon-remove            
+			else if (!selectedproject)
+				i Please select a project
 			else
-				p No Files
+				i No files available

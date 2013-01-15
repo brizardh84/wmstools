@@ -112,6 +112,7 @@ module.exports = function (app, passport, auth) {
 	// tasks routes
 	var tasks = require('../app/controllers/tasks');
 	app.get('/tasks/', auth.requiresLogin, tasks.index);
+	app.get('/tasks/archived', auth.requiresLogin, tasks.archived);
 	app.get('/tasks/new', auth.requiresLogin, tasks.new);
 	app.post('/tasks', auth.requiresLogin, tasks.save);
 	app.get('/tasks/:taskId', tasks.show);

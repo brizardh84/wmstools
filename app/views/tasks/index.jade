@@ -64,16 +64,16 @@ block content
 									when "Low"
 										clsPriority = "icon-circle-arrow-down";
 								a(href = '#', id = 'task-priority-' + task.number, class = clsPriority, data-type='select', data-name = "priority", data-pk=task.id, data-original-title = "Task Priority", data-url="/tasks/quicksave", data-value = task.priority, data-autotext = "never")
-							td
+							td.align-center
 								a(href = '#', id = 'task-duedate-' + task.number, class = task.isLate ? "red" : "", data-type='date', data-name = "due_date", data-pk=task.id, data-original-title = "Task Due For", data-url="/tasks/quicksave")= task.due_date ? task.due_date_yyyymmdd : ''
-							td
+							td.align-center
 								a(href = '#', style = 'margin : 0px 1px;', rel = "tooltip", title = "Mark as finished")
 									span.img.icon-check
 								a(href = '/tasks/' + task._id, style = 'margin : 0px 1px;', rel = "tooltip", title = "View details")
 									span.img.icon-search
 								a(href = '/tasks/' + task._id + '/edit', style = 'margin : 0px 1px;', rel = "tooltip", title = "Edit")
 									span.img.icon-pencil
-								a(href = '#', style = 'margin : 0px 1px;', title = "Delete", rel = "tooltip",)
+								a.confirm(href = '#', style = 'margin : 0px 1px;', title = "Delete", rel = "tooltip")
 									span.img.icon-remove            
 								a(href = '#myModal', style = 'margin : 0px 1px;', rel = "tooltip", title = "View worklogs (" + task.worklogs.length +")", data-toggle="modal")
 									span.img.icon-comment    

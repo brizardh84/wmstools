@@ -16,7 +16,7 @@ exports.new = function(req, res){
 				.sort({'name': 1})
 				.exec(function(err, users) {
 					res.render('tasks/new', {
-						title: 'New Task', 
+						title: 'Tasks', 
 						task: new Task({}),
 						projects: projects,
 						users : users
@@ -36,7 +36,7 @@ exports.edit = function (req, res) {
 				.sort({'name': 1})
 				.exec(function(err, users) {
 					res.render('tasks/edit', {
-						title: 'Edit Task', 
+						title: 'Tasks', 
 						task: req.task,
 						projects: projects,
 						users : users
@@ -123,6 +123,7 @@ exports.quicksave = function(req, res) {
 // View a task
 exports.show = function(req, res){
 	res.render('tasks/show', {
+		title : 'Tasks',
 		worklogs : req.worklogs,
 		task: req.task
 	})
@@ -192,7 +193,77 @@ exports.index = function(req, res){
 					
 					Task.count().exec(function (err, count) {
 						res.render('tasks/index', {
-							title: 'List of Tasks', 
+							title: 'Tasks', 
+							tasks: tasks, 
+							page: page, 
+							pages: count / perPage,
+							count : count,
+							collections : collections,
+							project_filter : project_filter,
+							user_filter : user_filter
+						})
+					});
+				})
+		}
+	);
+}
+
+// Listing of archived tasks
+exports.archived = function(req, res){
+	var perPage = 100, 
+		page = req.param('page') > 0 ? req.param('page') : 0
+
+	var project_filter = req.param('project_filter') || "";
+	var user_filter = req.param('user_filter') || "";
+	var filters = {};
+	
+	if (project_filter != "")
+		filters.project = project_filter;
+	
+	if (user_filter != "")
+		filters.assigned_to = user_filter;
+
+	async.parallel(
+		{
+			projects : function(callback) {
+				Project
+					.find()
+					.sort({'number' : 1})
+					.exec(function(err, projects) {
+						callback(err, projects);
+					})
+			},
+			users : function(callback) {
+				User
+					.find()
+					.sort({'name' : 1})
+					.exec(function(err, users) {
+						callback(err, users);
+					})
+			}
+		},
+		function(err, collections) {
+			Task
+				.find(filters)
+				.populate('assigned_to')
+				.populate('project')
+				.populate('created_by')
+				.populate('modified_by')
+				.sort({'number': -1}) // sort by date
+				.limit(perPage)
+				.skip(perPage * page)
+				.exec(function(err, tasks) {
+					if (err) {
+						return res.render('500')
+					}
+					
+					tasks.forEach(function(task) {
+						task.isLate = new Date() > task.due_date;
+					});
+					
+					Task.count().exec(function (err, count) {
+						res.render('tasks/archived', {
+							title: 'Tasks', 
 							tasks: tasks, 
 							page: page, 
 							pages: count / perPage,

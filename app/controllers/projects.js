@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 exports.new = function(req, res){
 	Contact.find().exec(function(err, contacts) {
 		res.render('projects/new', {
-			title: 'New Project', 
+			title: 'Projects', 
 			project: new Project({}),
 			contacts: contacts
 		});
@@ -25,7 +25,7 @@ exports.create = function (req, res) {
 	project.save(function(err){
 		if (err) {
 			res.render('projects/new', {
-				title: 'New Project', 
+				title: 'Projects', 
 				project: project, 
 				errors: err.errors
 			});
@@ -42,7 +42,7 @@ exports.edit = function (req, res) {
 		.sort({'lastname': 1})
 		.exec(function(err, contacts) {
 			res.render('projects/edit', {
-				title: 'Edit ' + req.project.title,
+				title: 'Projects',
 				project: req.project,
 				contacts : contacts
 			});
@@ -64,7 +64,7 @@ exports.update = function(req, res){
 	project.save(function(err, doc) {
 		if (err) {
 			res.render('projects/edit', {
- 				title: 'Edit Project', 
+ 				title: 'Projects', 
  				project: project, 
  				errors: err.errors
 			})
@@ -77,7 +77,7 @@ exports.update = function(req, res){
 // View an project
 exports.show = function(req, res){
 	res.render('projects/show', {
-		title: req.project.title,
+		title: "Projects",
 		project: req.project,
 		comments: req.comments,
 		generatedpdf : false
@@ -111,7 +111,7 @@ exports.index = function(req, res){
 			
 			Project.count().exec(function (err, count) {
 				res.render('projects/index', {
-					title: 'List of Projects', 
+					title: 'Projects', 
 					projects: projects, 
 					page: page, 
 					pages: count / perPage,

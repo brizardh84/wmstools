@@ -16,7 +16,7 @@ exports.index = function(req, res){
 			selectedproject = req.param('project') || "";
 			
 
-			/*if (selectedproject != "") {
+			if (selectedproject != "") {
 				if (fs.existsSync('doc/' + selectedproject)) {
 					walk('doc/' + selectedproject, function(err, results) {
 						if (err) throw err;
@@ -27,20 +27,20 @@ exports.index = function(req, res){
 				}
 			} else {
 				files = [];
-			}*/
+			}
 			
 			Project.count().exec(function (err, count) {
 				res.render('documents/index', {
-					title: 'List of Documents', 
+					title: 'Documents', 
 					projects: projects,
 					selectedproject : selectedproject,
-					//files : files
+					files : files
 				})
 			})
 		})
 		
 }
-/*
+
 // Parallel walking
 var walk = function(dir, done) {
 	var results = [];
@@ -86,4 +86,4 @@ var walk = function(dir, done) {
 function getExtension(filename) {
     var i = filename.lastIndexOf('.');
     return (i < 0) ? '' : filename.substr(i);
-}*/
+}

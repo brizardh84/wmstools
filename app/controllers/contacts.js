@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 // New contact
 exports.new = function(req, res){
 	res.render('contacts/new', {
-		title: 'New Contact', 
+		title: 'Contacts', 
 		contact: new Contact({})
 	})
 }
@@ -19,7 +19,7 @@ exports.create = function (req, res) {
 	contact.save(function(err){
 		if (err) {
 			res.render('contacts/new', {
-				title: 'New Contact', 
+				title: 'Contacts', 
 				contact: contact, 
 				errors: err.errors
 			})
@@ -46,7 +46,7 @@ exports.update = function(req, res){
 	contact.save(function(err, doc) {
 		if (err) {
 			res.render('contacts/edit', {
- 				title: 'Edit Contact', 
+ 				title: 'Contacts', 
  				contact: contact, 
  				errors: err.errors
 			})
@@ -95,7 +95,7 @@ exports.index = function(req, res){
 			
 			Contact.count().exec(function (err, count) {
 		  		res.render('contacts/index', {
-					title: 'List of Contacts', 
+					title: 'Contacts', 
 					contacts: contacts,
 					letters : letters,
 					p_search : search,

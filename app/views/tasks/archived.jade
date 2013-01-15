@@ -1,0 +1,73 @@
+extends ../layouts/default
+
+block main
+	h2 Archived tasks
+    
+block content
+	div#filtres
+		form.form-inline
+			fieldset
+				legend Filters
+				label.control-label(for='projet', style = 'padding-right:5px;') Project :
+				select#projet.input-large(type='text', name="project_filter", placeholder='Select projects')
+					option(value = "") Select a project
+					each project in collections.projects
+						option(value = project.id, selected = project_filter == project._id) [#{project.number}] - #{project.title}
+				label.control-label(for='user', style = 'padding-left : 20px; padding-right:5px;') Assigned to : 
+				select#user.input-large(type='text', name="user_filter", placeholder='Choisir utilisateurs')
+					option(value = "") Select a user
+					each user in collections.users
+						option(value = user.id, selected = user_filter == user._id) #{user.name}
+				button.btn(type='submit', style = 'margin-left : 10px;') Filter
+
+	legend Tasks
+	if (tasks.length > 0)
+		div.container
+			table.table.table-striped.table-bordered.small(id = "tasks", border = 0, cellspacing = 0, cellpadding = 0)
+				thead.task-header
+					tr
+						th #
+						th Project
+						th Task
+						th %
+						th(width = 95) Assigned to
+						th Priority
+						th Due date
+						td(width = 95) Quick actions
+				tbody
+					each task in tasks
+						//tr(class = task.isLate ? "error" : "")
+						tr
+							td
+								b= task.number
+							td [#{task.project.number}] - #{task.project.title}
+							td= task.task
+							td= task.completion + "%"
+							td= task.assigned_to ? task.assigned_to.name : "N/A"
+							td.align-center
+								- var clsPriority = "";
+								case task.priority
+									when "Very high"
+										clsPriority = "icon-circle-arrow-up";
+									when "High"
+										clsPriority = "icon-arrow-up";
+									when "Normal"
+										clsPriority = "icon-arrow-down";
+									when "Low"
+										clsPriority = "icon-circle-arrow-down";
+								a(class = clsPriority, rel = "tooltip", title = task.priority)
+							td.align-center= task.due_date ? task.due_date_yyyymmdd : 'N/A'
+							td.align-center
+								a(href = '/tasks/' + task._id, style = 'margin : 0px 1px;', rel = "tooltip", title = "View details")
+									span.img.icon-search         
+								a(href = '#myModal', style = 'margin : 0px 1px;', rel = "tooltip", title = "View worklogs (" + task.worklogs.length +")", data-toggle="modal")
+									span.img.icon-comment    
+		
+		//if (pages > 1)
+		//	.pagination.align-center
+		//		ul
+		//			!= createPagination(pages, page)
+	else
+		div
+			i No data found
+				
