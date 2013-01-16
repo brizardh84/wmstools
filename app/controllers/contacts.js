@@ -11,6 +11,14 @@ exports.new = function(req, res){
 	})
 }
 
+// New quick contact
+exports.quicknew = function(req, res){
+	res.render('contacts/quicknew', {
+		title: 'Contacts', 
+		contact: new Contact({})
+	})
+}
+
 exports.create = function (req, res) {
 	var contact = new Contact(req.body);
 

@@ -1,6 +1,8 @@
-extends ../layouts/default
-
 block content
+	div.modal-header(style = "margin-bottom : 15px;")
+		button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
+		h3 Quick Task Creation
+		
 	- var action = '/tasks'
 
 	if (!task.isNew)
@@ -30,13 +32,13 @@ block content
 				.control-group
 					label.control-label(for='task') Task (*)
 					.controls
-						input#task.input-xxlarge(type='text', name="task", value=task.task, placeholder='Enter the title')  
+						input#task.input-xlarge(type='text', name="task", value=task.task, placeholder='Enter the title')  
 												
 				// Description    
 				.control-group
 					label.control-label(for='description') Description
 					.controls
-						textarea#description.input-xxlarge(type='text', name="description", rows = 6, placeholder='Enter the description')=task.description
+						textarea#description.input-xlarge(type='text', name="description", rows = 6, placeholder='Enter the description')=task.description
 			
 				// Project    
 				.control-group
@@ -93,7 +95,8 @@ block content
 
 				// Actions    
 				.form-actions
-					button.btn.btn-primary(type='submit') Save changes
+					button.btn.btn-primary(type='submit') Save and Continue
 					&nbsp;
-					a.btn(href='/tasks', title="cancel") Cancel
+					a.btn(type='submit') Save and View 
+						i.icon-arrow-right 
 

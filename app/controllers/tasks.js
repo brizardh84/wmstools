@@ -25,6 +25,27 @@ exports.new = function(req, res){
 		});
 }
 
+
+// New quick task
+exports.quicknew = function(req, res){
+	Project
+		.find()
+		.sort({'number': 1})
+		.exec(function(err, projects) {
+			User
+				.find()
+				.sort({'name': 1})
+				.exec(function(err, users) {
+					res.render('tasks/quicknew', {
+						title: 'Tasks', 
+						task: new Task({}),
+						projects: projects,
+						users : users
+					});
+				})
+		});
+}
+
 // Edit a task
 exports.edit = function (req, res) {
 	Project

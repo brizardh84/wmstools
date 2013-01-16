@@ -36,6 +36,7 @@ module.exports = function (app, passport, auth) {
 	var projects = require('../app/controllers/projects');
 	app.get('/projects', auth.requiresLogin, projects.index);
 	app.get('/projects/new', auth.requiresLogin, projects.new);
+	app.get('/projects/quicknew', auth.requiresLogin, projects.quicknew);
 	app.post('/projects', auth.requiresLogin, projects.create);
 	app.get('/projects/:projectId', auth.requiresLogin, projects.show);
 	app.get('/projects/:projectId/edit', auth.requiresLogin, projects.edit);
@@ -84,6 +85,7 @@ module.exports = function (app, passport, auth) {
 	var contacts = require('../app/controllers/contacts');
 	app.get('/contacts', auth.requiresLogin, contacts.index);
 	app.get('/contacts/new', auth.requiresLogin, contacts.new);
+	app.get('/contacts/quicknew', auth.requiresLogin, contacts.quicknew);
 	app.post('/contacts', auth.requiresLogin, contacts.create);
 	app.get('/contacts/:contactId', contacts.show);
 	app.get('/contacts/:contactId/edit', auth.requiresLogin, contacts.edit);
@@ -114,6 +116,7 @@ module.exports = function (app, passport, auth) {
 	app.get('/tasks/', auth.requiresLogin, tasks.index);
 	app.get('/tasks/archived', auth.requiresLogin, tasks.archived);
 	app.get('/tasks/new', auth.requiresLogin, tasks.new);
+	app.get('/tasks/quicknew', auth.requiresLogin, tasks.quicknew);
 	app.post('/tasks', auth.requiresLogin, tasks.save);
 	app.get('/tasks/:taskId', tasks.show);
 	app.get('/tasks/:taskId/edit', auth.requiresLogin, tasks.edit);

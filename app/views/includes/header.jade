@@ -29,3 +29,18 @@ header#header
 						else
 							li
 								a(href="/login", title="Login") Login
+	if (req.isAuthenticated())
+		div#sticker
+			div.sticker-header Quick Tools
+			div.sticker.stickerproject
+				a(href = "/projects/quicknew", data-toggle="modal", data-target="#modalCreation") New Project
+			div.sticker.stickercontact
+				a(href = "/contacts/quicknew", data-toggle="modal", data-target="#modalCreation") New Contact
+			div.sticker.stickertask
+				a(href = "/tasks/quicknew", data-toggle="modal", data-target="#modalCreation") New Task
+			div.sticker
+				a(data-toggle="modal", data-target="#modalCreation") Do Something 
+			div.sticker
+				a(data-toggle="modal", data-target="#modalCreation") Do Something Else
+		div#modalCreation.modal.hide.fade(style = "padding : 20px;")
+			= "Do Something"

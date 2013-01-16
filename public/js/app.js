@@ -10,6 +10,25 @@ $(document).ready(function () {
 	    $_GET[decode(arguments[1])] = decode(arguments[2]);
 	});
 
+	// Menu sticky
+	$("#sticker").sticky({ topSpacing: 60, center : true });
+
+	$('div#modalCreation').modal({
+		keyboard : true,
+		show : false
+	}).hide();
+
+	$("#sticker a").on('click', function() {
+		var url = this.href;
+		if (url) {
+			$('div#modalCreation').load(url, function() {
+	
+			});
+		}
+	})
+
+
+
 	// confirmations
 	$('.confirm').submit(function (e) {
 		e.preventDefault();

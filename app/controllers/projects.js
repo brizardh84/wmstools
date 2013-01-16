@@ -16,6 +16,18 @@ exports.new = function(req, res){
 	});
 }
 
+
+// New quick project
+exports.quicknew = function(req, res){
+	Contact.find().exec(function(err, contacts) {
+		res.render('projects/quicknew', {
+			title: 'Projects', 
+			project: new Project({}),
+			contacts: contacts
+		})
+	});
+}
+
 // Create a project
 exports.create = function (req, res) {
 	var project = new Project(req.body);
