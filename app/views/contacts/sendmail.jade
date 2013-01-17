@@ -1,0 +1,42 @@
+block content
+	div.modal-header(style = "margin-bottom : 15px;")
+		button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
+		h3 Send Email
+	
+	if (typeof errors !== 'undefined')
+		.fade.in.alert.alert-block.alert-error
+			a.close(data-dismiss="alert", href="javascript:void(0)") x
+			ul
+				each error in errors
+					li= error.type
+	.row
+		.span7
+			.control-group
+				label.control-label(for='from') From
+				.controls
+					input#from.input-xlarge(type='text', name="from", value=user.name + " (" + user.email +")", readonly)
+			
+			.control-group
+				label.control-label(for='to') To
+				.controls
+					input#email-sent-to.input-xxlarge.focus(type='text', name="to", value="", placeholder='Enter the contact names')
+
+			.control-group
+				label.control-label(for='lastname') Subject
+				.controls
+					input#subject.input-xxlarge(type='text', name="subject", value="WMS Tools : " + context)
+					
+			.control-group
+				label.control-label(for='description') Body
+				.controls
+					textarea#body.input-xxlarge(type='text', rows="5", name="body", placeholder='Enter the body of your email')
+
+			.form-actions.align-center
+				a.btn.btn-primary  
+					i.icon-contacts.icon-white 
+					|  Send & Close
+				&nbsp;
+				a.btn
+					i.icon-plus
+					i.icon-contacts
+					|  Send & Create another one

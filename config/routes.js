@@ -86,6 +86,7 @@ module.exports = function (app, passport, auth) {
 	app.get('/contacts', auth.requiresLogin, contacts.index);
 	app.get('/contacts/new', auth.requiresLogin, contacts.new);
 	app.get('/contacts/quicknew', auth.requiresLogin, contacts.quicknew);
+	app.get('/contacts/sendmail', auth.requiresLogin, contacts.sendmail);
 	app.post('/contacts', auth.requiresLogin, contacts.create);
 	app.get('/contacts/:contactId', contacts.show);
 	app.get('/contacts/:contactId/edit', auth.requiresLogin, contacts.edit);

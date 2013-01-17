@@ -2,11 +2,14 @@ extends ../layouts/default
 
 block main
 	h2 Projects 
-	a.new(href='/projects/new', title="new project") Create New
+	div.btn-group
+		a.btn(href='/projects/new', title="new project")
+			i.icon-globe
+			= " New Project"
     
 block content
 	if (pages > 1)
-		.pagination.align-center
+		.pagination
 			ul
 				!= createPagination(pages, page)
   
@@ -39,7 +42,7 @@ block content
 					span Tags : None
 
 	if (pages > 1)
-		.pagination.align-center
+		.pagination
 			ul
 				!= createPagination(pages, page)
 				

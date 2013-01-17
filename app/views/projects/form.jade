@@ -8,9 +8,9 @@ block content
 	if (typeof errors !== 'undefined')
 		.fade.in.alert.alert-block.alert-error
 			a.close(data-dismiss="alert", href="javascript:void(0)") x
-		ul
-			each error in errors
-				li= error.type
+			ul
+				each error in errors
+					li= error.type
 
 	.row
 		.span7
@@ -21,17 +21,17 @@ block content
 				fieldset
 					legend General Info
 					.control-group
-						label.control-label(for='title') Title
+						label.control-label(for='title') Title (*)
 						.controls
 							input#title.input-xlarge(type='text', name="title", value=project.title, placeholder='Enter the title')
 
 					.control-group
-						label.control-label(for='number') Number
+						label.control-label(for='number') Number (*)
 						.controls
-							input#number.input-xlarge(type='text', name="number", value=project.number, placeholder='Enter the project number')
+							input#number.input-xlarge(type='text', name="number", value=project.number, placeholder='Enter the project number (6 digit)')
 
 					.control-group
-						label.control-label(for='description') Description
+						label.control-label(for='description') Description (*)
 						.controls
 							textarea#description.input-xlarge(type='text', rows="5", name="description", placeholder='Enter the project description')=project.description
 

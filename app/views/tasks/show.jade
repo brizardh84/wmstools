@@ -4,7 +4,9 @@ block content
 	.row
 		.span8.task-title #{task.task}
 		.align-right
-			a.btn.btn-small(href='/tasks/'+task._id+'/edit', title="edit") Edit
+			a.btn.btn-small(href='/tasks/'+task._id+'/edit', title="edit") 
+				i.icon-pencil
+				= " Edit"
 			&nbsp;&nbsp;
 			input(type="hidden", name="_method", value="DELETE")
 			button.btn.btn-danger.btn-small(type="submit") Delete

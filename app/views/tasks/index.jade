@@ -2,8 +2,12 @@ extends ../layouts/default
 
 block main
 	h2 Active tasks
-	a.new(href='/tasks/new', title="new task") New task
-    
+	
+	div.btn-group
+		a.btn(href='/tasks/new', title="new task")
+			i.icon-check
+			= " New Task"
+			
 block content
 	div#filtres
 		form.form-inline
@@ -75,7 +79,7 @@ block content
 									span.img.icon-pencil
 								a(href = '#', action = "delete", style = 'margin : 0px 1px;', title = "Delete", rel = "tooltip")
 									span.img.icon-remove
-								a(href = '#myModal', style = 'margin : 0px 1px;', rel = "tooltip", title = "View worklogs (" + task.worklogs.length +")", data-toggle="modal")
+								a(href = '#worklogModal', style = 'margin : 0px 1px;', rel = "tooltip", title = "View worklogs (" + task.worklogs.length +")", data-toggle="modal")
 									span.img.icon-comment
 		
 		//if (pages > 1)
@@ -86,15 +90,37 @@ block content
 		div
 			i No data found
 				
-	div#myModal.modal.hide.fade
+	div#worklogModal.modal.hide.fade
 		div.modal-header
-			button.close(type="button", data-dismiss="#modal", aria-hidden="true")&times;
+			button.close(type="button", data-dismiss="modal", aria-hidden="true")&times;
 			h3 Worklogs for (mettre le nom de la Task)
 		div.modal-body
 			p Worklogs listing (lister toutes les travaux)
-			p -
-			p -
-			p Add (mettre le formulaire d'entrée)
-		div.modal-footer
-			a.btn Close
-			a.btn.btn-primary Save Changes
+			p - Update by ...
+			p - Inquiry by ...
+			p - Follow-up by ...
+			p - Follow-up by ...
+			p - Inquiry by ...
+			p - Update by ...
+			p - Update by ...
+			p - Inquiry by ...
+			p - Update by ...
+			hr
+			form.form-horizontal.align-center(method="post", action="")
+				.control-group.align-left
+					label.control-label(for='type') Work type (*)
+					.controls
+						select#type.input-medium(type='text', rows="6", name="type", placeholder='Select type')
+							option(value = "Update") Status Update
+							option(value = "Inquiry") Inquiry
+							option(value = "Follow-up") Follow-up
+				.control-group.align-left
+					label.control-label(for='date') Date (*)
+					.controls
+						input#date.input-small(type = 'text', name="date", data-date-format="mm/dd/yyyy", id = 'datepicker', placeholder='Pick a date')
+				.control-group.align-left
+					label.control-label(for='what-was-done') What was done? (*)
+					.controls
+						textarea#what-was-done.input-xlarge(type='text', rows="4", name="body", placeholder='Write down all relevant information regarding the work you did on this task')
+		div.modal-footer.align-center
+			a.btn.btn-primary.align-center Add Worklog

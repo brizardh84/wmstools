@@ -1,7 +1,7 @@
 
 module.exports = {
 	development: {
-		db: 'mongodb://wms:a12345@ds045627.mongolab.com:45627/wms_tools'
+		db: 'mongodb://wms:a12345@ds049337.mongolab.com:49337/wmstools'
 	}, 
 	test: {
 

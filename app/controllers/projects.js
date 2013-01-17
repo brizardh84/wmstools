@@ -16,6 +16,28 @@ exports.new = function(req, res){
 	});
 }
 
+// Create a project
+exports.create = function (req, res) {
+	var project = new Project(req.body);
+
+	project.user = req.user;
+	
+	project.save(function(err){
+		if (err) {
+			console.log("Error : " + err);
+			Contact.find().exec(function(errContact, contacts) {
+				res.render('projects/new', {
+					title: 'Projects', 
+					project: project, 
+					contacts : contacts,
+					errors: err.errors
+				});
+			});
+		} else {
+			res.redirect('/projects/'+project._id);
+		}
+	});
+}
 
 // New quick project
 exports.quicknew = function(req, res){
@@ -28,24 +50,6 @@ exports.quicknew = function(req, res){
 	});
 }
 
-// Create a project
-exports.create = function (req, res) {
-	var project = new Project(req.body);
-
-	project.user = req.user;
-	
-	project.save(function(err){
-		if (err) {
-			res.render('projects/new', {
-				title: 'Projects', 
-				project: project, 
-				errors: err.errors
-			});
-		} else {
-			res.redirect('/projects/'+project._id);
-		}
-	});
-}
 
 // Edit an project
 exports.edit = function (req, res) {

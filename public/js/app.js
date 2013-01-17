@@ -17,11 +17,17 @@ $(document).ready(function () {
 		keyboard : true,
 		show : false
 	}).hide();
-
+	
+	// on veut le focus sur le premier contrôle ayant la classe "focus"
+	$('div#modalCreation').on('shown', function() {
+		$(".focus:first").focus();
+	})
+	
 	$("#sticker a").on('click', function() {
 		var url = this.href;
+		var context = window.location.href;
 		if (url) {
-			$('div#modalCreation').load(url, function() {
+			$('div#modalCreation').load(url +"?context=" + context, function() {
 	
 			});
 		}
@@ -42,10 +48,16 @@ $(document).ready(function () {
 		});
 	});
 
-	$('a[rel=tooltip]').tooltip();
+	$('[rel=tooltip]').tooltip();
 
 	$('#tags').tagsInput({
 		'defaultText' : 'Add tag',
+		'height':'60px',
+		'width':'280px'
+	});
+	
+	$('#email-sent-to').tagsInput({
+		'defaultText' : 'Add name',
 		'height':'60px',
 		'width':'280px'
 	});

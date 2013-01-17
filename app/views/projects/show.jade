@@ -1,7 +1,7 @@
 extends ../layouts/default
 
 block main
-	h1.left #{project.title} (#{project.number})
+	h1.left [#{project.number}] - #{project.title} 
 
 block content
 	.row
@@ -23,7 +23,9 @@ block content
 	p
 		br
 		form.center.form-inline.confirm(action="/projects/"+project.id, method="post")
-			a.btn(href='/projects/'+project._id+'/edit', title="edit") Edit
+			a.btn(href='/projects/'+project._id+'/edit', title="edit") 
+				i.icon-pencil
+				= " Edit"
 			&nbsp;&nbsp;
 			input(type="hidden", name="_method", value="DELETE")
 			button.btn.btn-danger(type="submit") Delete

@@ -2,8 +2,16 @@ extends ../layouts/default
 
 block main
 	h2 Documents 
+	div.btn-group
+		a.btn(href='#')
+			i.icon-file
+			= " Upload New File"
+		a.btn(href='#')
+			i.icon-folder-close
+			= " Create Folder"
+			
 block content
-	div.tabbable.tabs-left#projecttabs
+	div.tabbable.tabs-left#projecttabs(style = "margin-top : 20px;")
 		ul.nav.nav-tabs
 			each project in projects
 				li(class = (project.number == selectedproject) ? 'active' : '')

@@ -1,10 +1,17 @@
 extends ../layouts/default
 
 block main
-	h2 Contacts 
-	a.new(href='/contacts/new', title="new contact") Create New         
-
-block content  
+	h2 Contacts   
+	div.btn-group
+		a.btn(href='/contacts/new', title="new contact") 
+			i.icon-user
+			= " New Contact"
+		a.btn(href='#')
+			i.icon-contacts
+			= " Send an email to all contacts"
+			
+block content
+	br  
 	// SEARCH
 	form(method="get", action="?search=", enctype="multipart/form-data")
 		.search

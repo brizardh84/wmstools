@@ -5,15 +5,23 @@ header#header
 				.nav-collapse
 					ul.nav
 						li(class = title == 'Projects' ? "active" : "")
-							a(href='/projects', title="project listing") Projects
+							a(href='/projects', title="project listing") 
+								i.icon-globe.icon-white
+								= " Projects"
 
 						li(class = title == 'Documents' ? "active" : "")
-							a(href='/documents', title="document listing") Documents
+							a(href='/documents', title="document listing") 
+								i.icon-file.icon-white
+								= " Documents"
 
 						li(class = title == 'Contacts' ? "active" : "")
-							a(href='/contacts', title="contact listing") Contacts
+							a(href='/contacts', title="contact listing") 
+								i.icon-user.icon-white
+								= " Contacts"
 						li.dropdown(class = title == 'Tasks' ? "active" : "", style = 'cursor : pointer;')
-							a.dropdown-toggle(data-toggle="dropdown") Tasks
+							a.dropdown-toggle(data-toggle="dropdown") 
+								i.icon-check.icon-white
+								= " Tasks"
 								b.caret
 							ul.dropdown-menu
 								li
@@ -31,16 +39,27 @@ header#header
 								a(href="/login", title="Login") Login
 	if (req.isAuthenticated())
 		div#sticker
-			div.sticker-header Quick Tools
-			div.sticker.stickerproject
-				a(href = "/projects/quicknew", data-toggle="modal", data-target="#modalCreation") New Project
-			div.sticker.stickercontact
-				a(href = "/contacts/quicknew", data-toggle="modal", data-target="#modalCreation") New Contact
-			div.sticker.stickertask
-				a(href = "/tasks/quicknew", data-toggle="modal", data-target="#modalCreation") New Task
-			div.sticker
-				a(data-toggle="modal", data-target="#modalCreation") Do Something 
-			div.sticker
-				a(data-toggle="modal", data-target="#modalCreation") Do Something Else
+			div.sticker-header(rel = "tooltip", "title" = "Quick tools bar", data-placement = "left")
+				i.icon-wrench
+			a.sticker.stickerproject(href = "/projects/quicknew", data-toggle="modal", data-target="#modalCreation", rel = "tooltip", "title" = "Create new Project (Ctrl + 1)", data-placement = "left")
+				i.icon-plus.icon-white
+				i.icon-globe.icon-white
+			a.sticker.stickerproject(data-toggle="modal", data-target="#modalCreation", rel = "tooltip", "title" = "Upload new Document (Ctrl + 2)", data-placement = "left")
+				i.icon-plus.icon-white
+				i.icon-file.icon-white
+			a.sticker.stickercontact(href = "/contacts/quicknew", data-toggle="modal", data-target="#modalCreation", rel = "tooltip", "title" = "Create new Contact (Ctrl + 3)", data-placement = "left")
+				i.icon-plus.icon-white
+				i.icon-user.icon-white
+			a.sticker.stickertask(href = "/tasks/quicknew", data-toggle="modal", data-target="#modalCreation", rel = "tooltip", "title" = "Create new Task (Ctrl + 4)", data-placement = "left")
+				i.icon-plus.icon-white
+				i.icon-check.icon-white
+			div.sticker-separator
+			a.sticker(href = "/contacts/sendmail", data-toggle="modal", data-target="#modalCreation", rel = "tooltip", "title" = "Send Email within this page (Ctrl + 5)", data-placement = "left")
+				i.icon-contacts.icon-white
+			div.sticker-separator
+			a.sticker(data-toggle="modal", data-target="#modalCreation", rel = "tooltip", "title" = "Get Information about this page (Ctrl + 6)", data-placement = "left")
+				i.icon-info-sign.icon-white
+			a.sticker(data-toggle="modal", data-target="#modalCreation", rel = "tooltip", "title" = "Report Bug (Ctrl + 7)", data-placement = "left") 
+				i.icon-exclamation-sign.icon-white
 		div#modalCreation.modal.hide.fade(style = "padding : 20px;")
 			= "Do Something"

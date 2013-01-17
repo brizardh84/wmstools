@@ -112,3 +112,13 @@ exports.index = function(req, res){
 			});
 		});
 }
+
+exports.sendmail = function(req, res) {
+	var context = req.param('context') || "";
+
+	res.render('contacts/sendmail', {
+		title: 'Contacts',
+		context : context,
+		user : req.user
+	});
+}
